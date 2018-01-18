@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8" />
+<title>video player</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href="css/jplayer.blue.monday.mobile.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../../js/lib/jquery.js"></script>
+<script type="text/javascript" src="../../../js/request.js"></script>
+<script type="text/javascript" src="jquery.jplayer.min.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){
+	var fn=request["fn"];
+	var videotype=request["videotype"];
+	var url=unescape(request["url"]);
+	var title=unescape(request["title"]);
+	isfull=false;
+	$("#jquery_jplayer_1").jPlayer({
+		ready: function () {
+			
+			$(this).jPlayer("setMedia", {
+				title: title,
+				m4v: url+fn+"."+videotype,
+				poster: url+fn+".jpg"
+			});
+		},
+		swfPath: "jquery.jplayer.swf",
+		solution:"html",
+		supplied: "m4v",
+		size: {
+			width: "320px",
+			height: "180px",
+			cssClass: "jp-video-full"
+		},
+		//fullWindow:true,
+		//fullScreen:true,
+		useStateClassSkin: true,
+		autoBlur: false,
+		smoothPlayBar: true,
+		keyEnabled: true,
+		remainingDuration: true,
+		toggleDuration: true
+	});
+	$("button.jp-full-screen").on('click', function() {
+		
+		var index = parent.layer.getFrameIndex(window.name); 
+		if(isfull==true){
+			parent.layer.restore(index);
+			isfull=false;}
+		else{
+			parent.layer.full(index);
+			isfull=true;}
+	});
+});
+
+
+//]]>
+</script>
+
+</head>
+<body style='margin:0; padding:0;'>
+	<div id="jp_container_1" class="jp-video jp-video-full" role="application" aria-label="media player">
+		<div class="jp-type-single">
+			<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+			<div class="jp-gui">
+				<div class="jp-interface">
+					<div class="jp-progress">
+						<div class="jp-seek-bar">
+							<div class="jp-play-bar"></div>
+						</div>
+					</div>
+					<div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div>
+					<div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div>
+					<div class="jp-controls-holder">
+						<div class="jp-controls">
+							<button class="jp-play" role="button" tabindex="0">play</button>
+						</div>
+					</div>
+					<div class="jp-details">
+						<div class="jp-title" aria-label="title">&nbsp;</div>
+					</div>
+				</div>
+			</div>
+			<div class="jp-no-solution">
+				<span>Update Required</span>
+				To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

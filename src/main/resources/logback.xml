@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOG_HOME" value="./logs" />
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+	<appender name="ROLL-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">  
+        <file>${LOG_HOME}/api.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/api-%d{yyyyMMdd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder charset="UTF-8">  
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%level] %logger Line:%L - %msg %n</pattern>
+        </encoder>  
+    </appender>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%level] %logger Line:%L - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.jones" level="INFO" additivity="false">
+        <appender-ref ref="ROLL-FILE" />
+        <appender-ref ref="STDOUT" />
+    </logger>
+    <root level="INFO">
+        <appender-ref ref="ROLL-FILE"/>
+    </root>
+</configuration>

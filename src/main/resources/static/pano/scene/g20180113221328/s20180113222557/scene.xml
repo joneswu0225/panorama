@@ -1,0 +1,21 @@
+<krpano>
+	<this scenename="s20180113222557" next="" prev="" title="儿童房" time_pano="2018-01-13 10:26:13 下午" time_camer="" shutter="1/12" aperture="F2" iso="187" album="" blend="0"/>
+	<location gps_lon="" gps_lat="" picmap_url="" picmap_x="" picmap_y=""/>
+	<scenemusic ID="SYSTEMSCENESOUND" Enabled="off" Url="" Volume="1.0" Pan="0.0" Loops="true" PositionEnabled="false" ath="0" atv="0" range="90" OnComplete=""/>
+	<include url="../groupscenes.xml"/>
+	<preview url="preview.jpg"/>
+	<view fovtype="DFOV" maxpixelzoom="" hlookat="-0.75" vlookat="14.25" fov="110" fovmin="60" fovmax="120" limitview="range" hlookatmin="-180" hlookatmax="180" vlookatmin="-90" vlookatmax="90"/>
+	<events name="s20180113222557" keep="false" onxmlcomplete="VRM_SceneOnXMLComplete();" onpreviewcomplete="VRM_SceneOnPreviewComplete();" onloadcomplete="VRM_SceneOnLoadComplete();"/>
+	<hotspot name="zhanh1" type="image" sound_range="90" targetway="3" targeth="-45.62" targetv="10.39" targetf="90" onclick="loadpano_way(get(name));" onloaded="hotspot_sync_ui_hide(get(name));hotspot_animate(get(name));VRM_PlayHotspotSound(get(name));" framecurrent="0" distorted="false" url="%FIRSTXML%/files/hotspot/front.png" ath="67.93" atv="30.44" targetscene="g20180113221328/s20180113222707"/>
+	<image type="CUBE" multires="true" tilesize="512">
+		<level tiledimagewidth="2304" tiledimageheight="2304">
+			<cube url="tiles/l3/%v/l3_%s_%v_%h.jpg"/>
+		</level>
+		<level tiledimagewidth="1152" tiledimageheight="1152">
+			<cube url="tiles/l2/%v/l2_%s_%v_%h.jpg"/>
+		</level>
+		<level tiledimagewidth="640" tiledimageheight="640">
+			<cube url="tiles/l1/%v/l1_%s_%v_%h.jpg"/>
+		</level>
+	</image>
+</krpano>

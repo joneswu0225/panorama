@@ -1,0 +1,6 @@
+<#assign periodMap={'1M':'最近一个月','3M':'最近三个月','6M':'最近六个月','1Y':'最近一年','2Y':'最近两年','3Y':'最近三年','5Y':'最近五年','EST':'自开始以来','YTD':'今年以来'}/>
+<#if type=='hisAchieve'>该基金${periodMap[query.range]!}<#if data.RETURN_RATE??>，收益率为${data.RETURN_RATE!}%</#if><#if data.RANK_RETURN_RATE??>，排名${data.RANK_RETURN_RATE}</#if><#if data.SHARP_RATIO??>，Sharpe为${data.SHARP_RATIO}%</#if><#if data.RANK_SHARP_RATIO??>，排名${data.RANK_SHARP_RATIO}</#if><#if data.ALPHA??>，Alpha为${data.ALPHA}%，</#if><#if data.RANK_ALPHA??>，排名${data.RANK_ALPHA}</#if>;</#if>
+<#if type=='riskControl'>该基金${periodMap[query.range]!}<#if data.MAX_DRAWDOWN??>，最大回撤率为${data.MAX_DRAWDOWN!}%</#if><#if data.RANK_MAX_DRAWDOWN??>，排名${data.RANK_MAX_DRAWDOWN}</#if><#if data.VOLATILITY??>，年化波动率为${data.VOLATILITY}%</#if><#if data.RANK_VOLATILITY??>，排名${data.RANK_VOLATILITY}</#if>;</#if>
+<#if type=='holdAnalysisTop'>${data.REPORT_DATE!}季报的股票仓位为${data.RATIO_IN_NA}%，仓位占比前${query.topN}的股票为：${data.STK_NAME}。</#if>
+<#if type=='holdAnalysisHold'>${data.REPORT_DATE!}季报的股票仓位为${data.RATIO_IN_NA}%，重仓TOP${query.topN}占比为${data.TOPN_IN_NA}%，重仓${data.STK_NAME}。</#if>
+<#if type=='achieveAnalysis'><#list data.RETURN_PARTY?eval as party><#if query.fundType??>${party[query.fundType]!}<#else><#list party?values as content>${content}</#list></#if></#list></#if>

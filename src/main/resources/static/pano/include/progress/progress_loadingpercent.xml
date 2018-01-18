@@ -1,0 +1,44 @@
+<krpano>
+	<events name="loadingpercent" keep="true"
+	        onxmlcomplete="if(progress2.percent,loadingpercent_setparent();loadingpercent_startloading(););"
+	        onloadcomplete="if(progress2.percent,delayedcall(0.25, loadingpercent_stoploading() ););"
+	        />
+
+	<layer name="loadingpercent_text" keep="true"
+	       url="%SWFPATH%/plugins/textfield.swf"
+	       align="center"
+	       background="false"
+	       border="false"
+	       autoheight="true"
+	       css="text-align:center; color:#FFFFFF; font-family:Arial; font-weight:bold; font-size:22px; font-style:italic;" textshadow="2"
+	       html=""
+	       zorder="1000"
+	       />
+	
+	<action name="loadingpercent_startloading">
+		set(loadingpercent_isloading, true);
+		set(layer[loadingpercent_text].visible, true);
+		
+		asyncloop(loadingpercent_isloading,
+			mul(pv, progress.progress, 100);
+			roundval(pv,0);
+			set(txt,get(progress2.text_percent));
+			if(txt===null,set(txt,'加载进行中: '););
+			if(this.title!==null,txtadd(txt,get(this.title)););
+			txtadd(txt,' ');
+			txtadd(layer[loadingpercent_text].html, get(txt), get(pv), '%');
+		  );
+	</action>
+	
+	<action name="loadingpercent_stoploading">
+		set(loadingpercent_isloading, false); 
+		set(layer[loadingpercent_text].visible, false);
+	</action>
+
+	<action name="loadingpercent_setparent">
+		set(txt,get(progress2.parent_percent));
+		if(txt===null,set(txt,''););
+		set(layer[loadingpercent_text].parent, get(txt));
+	</action>
+
+</krpano>

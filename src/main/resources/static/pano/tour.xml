@@ -1,0 +1,40 @@
+﻿<krpano onstart="VRM_OnTourStart();" basedir="%FIRSTXML%" logkey="False" showerrors="False" actionintervalbase="frame" bgcolor="0x000000" tweenintervalbase="action" idletime="0.5" colorcorrection="default" debugmode="False" DefaultGroup="g20180113221322" DefaultScene="s20180113222336" xWebMap="" WebMapKey="7mC29yfzKVuG8Km3rcvrWmLp" AutoNext="true" SceneTimer="0" LoopAll="false" DefaultPicMap="%FIRSTXML%/files/picmap/default.png" lastscene="" lastscene_tmp="" stagescale.desktop.or.tablet="" stagescale.mobile="0.5" projectid="D66D3EA6-1B51-422F-951F-915146C94FD5">
+	<ide loadstate=""/>
+	<scenesound name="_scenesound_"/>
+	<tourmusic ID="SYSTEMTOURSOUND" Enabled="off" Volume="1.0" Pan="0.0" Loops="true" Url="%FIRSTXML%/files/sound/system_bgsound_bgmusic.mp3" OnComplete=""/>
+	<include url="%FIRSTXML%/include/basic.xml"/>
+	<area mode="align" x="0" y="0" width="100%" height="100%" left="0" top="0" right="0" bottom="0" align="lefttop"/>
+	<display flash10="on" fps="60" details="32" tessmode="-1" movequality="HIGHSHARP" stillquality="HIGHSHARP" stilltime="0.25" movequality10="HIGHSHARP" stillquality10="HIGHSHARP" showpolys="false" html5rendermode="1" hardwarelimit="1024"/>
+	<control usercontrol="all" mousetype="moveto" movetocursor="arrow" cursorsize="10" mouseaccelerate="1.00" mousespeed="10.00" mousefriction="0.80" keybaccelerate="0.50" keybspeed="10.00" keybfriction="0.90" keybinvert="False" mousefovchange="1.00" keybfovchange="1.00" fovspeed="3.00" fovfriction="0.90" keycodesleft="37" keycodesright="39" keycodesup="38" keycodesdown="40" keycodesin="16,65,107" keycodesout="17,89,90,109" headswing="0" zoomtocursor="False" zoomoutcursor="True" touchfriction="0.87" trackpadzoom="True" touchtype="drag2dsmooth"/>
+	<cursors url="" type="8way" move="" drag="" arrow_l="" arrow_lu="" arrow_ld="" arrow_r="" arrow_ru="" arrow_rd="" arrow_u="" arrow_d=""/>
+	<autorotate enabled="true" waittime="1.5" accel="1" speed="8" horizon="0" tofov="off"/>
+	<progress showload="bar()" showwait="loopings()" showreloads="True" parent=""/>
+	<progress2 animation="false" loadingbar="false" percent="true" parent_animation="" width_loadingbar="100%" height_loadingbar="10" backcolor_loadingbar="0x00FF00" frontcolor_loadingbar="0xFFFF00" bgalpha_loadingbar="1" parent_loadingbar="" text_percent="正在加载:"/>
+	<contextmenu fullscreen="false" enterfs="全屏模式" exitfs="退出全屏" native="false" versioninfo="false" touch="true">
+		<item caption="关于全景船福" onclick="showhint(&apos;请关注“全景船福”公众号&apos;,3000);" separator="false"/>
+		<item name="旋转控制" caption="旋转/暂停" visible="True" enabled="True" separator="True" onclick="switch(autorotate.enabled);"/>
+		<item caption="上一场景" visible="True" enabled="True" separator="True" onclick="if(image.type===&apos;cylinder&apos;,vrm_goback();, VRM_LoadScene(get(This.Prev)););"/>
+		<item caption="下一场景" visible="True" enabled="True" onclick="if(image.type===&apos;cylinder&apos;,vrm_goback();, VRM_LoadScene(get(This.Next)););"/>
+		<item caption="普通视角" separator="True" onclick="if(image.type!==&apos;cylinder&apos;,tween(view.fovmax, 155.0, distance(179, 0.25), easeoutquad);tween(view.architectural, 0.0, distance(1.0, 0.25), easeoutquad);tween(view.fisheye, 0.0, distance(1.0, 0.25), easeoutquad, set(view.stereographic,false); );tween(view.vlookat, 0);tween(view.fov, 90););"/>
+		<item caption="保真效果" onclick="if(image.type!==&apos;cylinder&apos;,tween(view.fovmax, 155.0, distance(179, 0.25), easeoutquad);tween(view.architectural, 1.0, distance(1.0, 0.25), easeoutquad);tween(view.fisheye, 0.0, distance(1.0, 0.25), easeoutquad, set(view.stereographic,false); );tween(view.vlookat, 0);tween(view.fov, 90););"/>
+		<item caption="超角视角" onclick="if(image.type!==&apos;cylinder&apos;,tween(view.architectural, 0.0, distance(1.0, 0.25), easeoutquad);tween(view.fisheye, 0.0 ,distance(1.0, 0.10), easeoutquad, set(view.stereographic,true);tween(view.fisheye, 1.0, distance(1.0, 1.25));tween(view.fovmax, 150, distance(179, 1.25)); );tween(view.vlookat, 0);tween(view.fov, 90););"/>
+		<item caption="鱼眼视角" onclick="if(image.type!==&apos;cylinder&apos;,tween(view.architectural, 0.0, distance(1.0, 0.25), easeoutquad);tween(view.fisheye, 0.0 ,distance(1.0, 0.20), easeoutquad, set(view.stereographic,false); set(view.fovmax,179);tween(view.fisheye, 0.35, distance(1.0, 1.25)); );tween(view.vlookat, 0);tween(view.fov, 90););"/>
+		<item caption="小行星视图" onclick="if(image.type!==&apos;cylinder&apos;,tween(view.architectural, 0.0, distance(1.0, 0.25), easeoutquad);tween(view.fisheye, 0.0 ,distance(1.0, 0.10), easeoutquad, set(view.stereographic,true);tween(view.fisheye, 1.0, distance(1.0, 0.75));tween(view.fov, 180, distance(179, 0.75), easeoutquad, set(view.fovmax,150););tween(view.vlookat, 90, distance(179, 0.75), easeoutquad); ););"/>
+	</contextmenu>
+	<events onxmlcomplete="set(events.onxmlcomplete,null);set(_str,&apos;scene/&apos;);if(defaultgroup==&apos;object&apos; OR defaultgroup==&apos;gigaimage&apos;,set(_str,&apos;&apos;););txtadd(_xScene,&apos;%FIRSTXML%/&apos;,get(_str),get(defaultgroup),&apos;/&apos;,get(defaultscene));VRM_LoadScene(get(_xScene));delete(_xScene);
+caly();
+add(yfloor,y01,10);
+set(layer[floortxt].y,get(yfloor));
+playsound(&quot;music01&quot;,&quot;%FIRSTXML%/files/sound/system_bgsound_bgmusic.mp3&quot;,true,&quot;&quot;);" onnewpano="set(VRM_Timer,0);" onpreviewcomplete="" onloadcomplete="" onloaderror="" onkeydown="copy(autonext_back_keydown,autonext);
+set(autonext,false);" onkeyup="if(autonext_back_keydown,copy(autonext,autonext_back_keydown););
+set(VRM_Timer,0);" onclick="" onviewchange="" onidle="" onresize="" onenterfullscreen="" onexitfullscreen="" onmousedown="copy(autonext_back_mousedown,autonext);
+set(autonext,false);" onmouseup="if(autonext_back_mousedown,copy(autonext,autonext_back_mousedown););
+set(VRM_Timer,0);" onmousewheel="" keep="True" onviewchanged="" onnewscene="" onremovepano="vrm_removehotspotsound();vrm_removescenesound();txtadd(vrm_lastscene,get(group.groupname),&apos;/&apos;,get(this.scenename));if(vrm_lastscene===&apos;null/null&apos;,txtadd(vrm_lastscene,get(DefaultGroup),&apos;/&apos;,get(DefaultScene));,copy(vrm_lastath,view.hlookat);copy(vrm_lastatv,view.vlookat);copy(vrm_lastfov,view.fov););" ondoubleclick="set(tourenable,0);"/>
+	<include url="%FIRSTXML%/include/publicresource.xml"/>
+	
+	<include url="%FIRSTXML%/include/modalwindow.xml"/>
+	<include url="%FIRSTXML%/skin/skin.xml"/>
+	<include url="%FIRSTXML%/scene/tourgroups.xml"/>
+	
+	<include url="%FIRSTXML%/scene/scenelist.xml"/>
+</krpano>

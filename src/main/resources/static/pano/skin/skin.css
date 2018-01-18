@@ -1,0 +1,33 @@
+﻿@-ms-viewport { width:device-width; }
+@media only screen and (min-device-width:800px) { html { overflow:hidden; } }
+.centerdiv{width:0;height:0;position:fixed;left:50%;rigth:50%;top:50%;bottom:50%;}			
+.divError{width:600px;height:220px;margin-left:-300px;margin-top:-110px;text-align:center;}
+html {
+	height:100%;
+}
+body {
+	height:100%;
+	overflow: hidden;
+	margin:0;
+	padding:0;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:16px;
+	color:#000000;
+	background-color:#000000;
+}
+.pano{width:100%;height:100%;}
+
+.divtable {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+.divcell{
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;	
+}
+.divcell img {
+	max-width:100%;
+	max-height:100%;
+}

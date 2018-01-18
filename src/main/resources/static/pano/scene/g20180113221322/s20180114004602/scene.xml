@@ -1,0 +1,26 @@
+<krpano>
+	<this scenename="s20180114004602" next="" prev="" title="餐厅" time_pano="2018-01-14 12:46:19 上午" time_camer="" shutter="1/8" aperture="F2" iso="293" album="" blend="0"/>
+	<location gps_lon="" gps_lat="" picmap_url="" picmap_x="" picmap_y=""/>
+	<scenemusic ID="SYSTEMSCENESOUND" Enabled="off" Url="" Volume="1.0" Pan="0.0" Loops="true" PositionEnabled="false" ath="0" atv="0" range="90" OnComplete=""/>
+	<include url="../groupscenes.xml"/>
+	<preview url="preview.jpg"/>
+	<view fovtype="DFOV" maxpixelzoom="" hlookat="-5.04" vlookat="15.29" fov="110" fovmin="60" fovmax="120" limitview="range" hlookatmin="-180" hlookatmax="180" vlookatmin="-90" vlookatmax="90"/>
+	<events name="s20180114004602" keep="false" onxmlcomplete="VRM_SceneOnXMLComplete();" onpreviewcomplete="VRM_SceneOnPreviewComplete();" onloadcomplete="VRM_SceneOnLoadComplete();"/>
+	<hotspot name="zhang1" type="image" sound_range="90" targetway="3" targeth="110.14" targetv="2.39" targetf="90" onclick="loadpano_way(get(name));" onloaded="hotspot_sync_ui_hide(get(name));hotspot_animate(get(name));VRM_PlayHotspotSound(get(name));" framecurrent="0" distorted="false" url="%FIRSTXML%/files/hotspot/front.png" ath="89.94" atv="30.29" targetscene="g20180113221322/s20180113222249"/>
+	<hotspot name="zhang2" type="image" sound_range="90" targetway="3" targeth="25.8" targetv="7.42" targetf="90" onclick="loadpano_way(get(name));" onloaded="hotspot_sync_ui_hide(get(name));hotspot_animate(get(name));VRM_PlayHotspotSound(get(name));" framecurrent="0" distorted="false" url="%FIRSTXML%/files/hotspot/front.png" ath="-31.78" atv="18.77" targetscene="g20180113221322/s20180113222032"/>
+	<hotspot name="zhang3" type="image" sound_range="90" targetway="3" targeth="-61.42" targetv="2.02" targetf="90" onclick="loadpano_way(get(name));" onloaded="hotspot_sync_ui_hide(get(name));hotspot_animate(get(name));VRM_PlayHotspotSound(get(name));" framecurrent="0" distorted="false" url="%FIRSTXML%/files/hotspot/front.png" ath="-82.7" atv="27.23" targetscene="g20180113221322/s20180113222448"/>
+	<hotspot name="zhang4" type="image" sound_range="90" targetway="3" targeth="-58.48" targetv="15.13" targetf="90" onclick="loadpano_way(get(name));" onloaded="hotspot_sync_ui_hide(get(name));hotspot_animate(get(name));VRM_PlayHotspotSound(get(name));" framecurrent="0" distorted="false" url="%FIRSTXML%/files/hotspot/front.png" ath="-128.54" atv="-3.69" targetscene="g20180113221328/s20180113222707"/>
+	<hotspot name="zhang5" type="image" sound_range="90" targetway="3" targeth="134.86" targetv="13.07" targetf="90" onclick="loadpano_way(get(name));" onloaded="hotspot_sync_ui_hide(get(name));hotspot_animate(get(name));VRM_PlayHotspotSound(get(name));" framecurrent="0" distorted="false" url="%FIRSTXML%/files/hotspot/front.png" ath="54.28" atv="18.57" targetscene="g20180113221322/s20180113222430"/>
+	<hotspot name="zhang6" type="image" sound_range="90" targetway="3" targeth="66.63" targetv="28.89" targetf="90" onclick="loadpano_way(get(name));" onloaded="hotspot_sync_ui_hide(get(name));hotspot_animate(get(name));VRM_PlayHotspotSound(get(name));" framecurrent="0" distorted="false" url="%FIRSTXML%/files/hotspot/front.png" ath="-173.12" atv="25.29" targetscene="g20180113221341/s20180113223311"/>
+	<image type="CUBE" multires="true" tilesize="512">
+		<level tiledimagewidth="2304" tiledimageheight="2304">
+			<cube url="tiles/l3/%v/l3_%s_%v_%h.jpg"/>
+		</level>
+		<level tiledimagewidth="1152" tiledimageheight="1152">
+			<cube url="tiles/l2/%v/l2_%s_%v_%h.jpg"/>
+		</level>
+		<level tiledimagewidth="640" tiledimageheight="640">
+			<cube url="tiles/l1/%v/l1_%s_%v_%h.jpg"/>
+		</level>
+	</image>
+</krpano>

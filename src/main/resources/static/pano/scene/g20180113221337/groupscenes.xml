@@ -1,0 +1,9 @@
+<krpano>
+	<group groupname="g20180113221337" defaultscene="s20180113223138">
+		<scenes>
+			<sceneitem order="1" name="s20180113223138" title="大厅" gps_lon="" gps_lat="" picmap_url="" picmap_x="" picmap_y="" tiled="true"/>
+			<sceneitem order="2" name="s20180113223156" title="阳台后" gps_lon="" gps_lat="" picmap_url="" picmap_x="" picmap_y="" tiled="true"/>
+			<sceneitem order="3" name="s20180113223214" title="阳台前" gps_lon="" gps_lat="" picmap_url="" picmap_x="" picmap_y="" tiled="true"/>
+		</scenes>
+	</group>
+</krpano>
