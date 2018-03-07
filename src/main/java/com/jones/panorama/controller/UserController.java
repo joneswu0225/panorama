@@ -27,8 +27,8 @@ public class UserController extends BaseController{
     public String list(@RequestParam(value = "size", required = false, defaultValue = "20") int size,
                        @RequestParam(value = "page", required = false, defaultValue = "0") int page,
                        ModelMap map){
-//        Page<User> userList = userService.findByPage(getQuery(page, size));
-//        map.put("page", userList);
+        Page<User> userList = userService.findByPage(getQuery(page, size));
+        map.put("page", userList);
         return "user/list";
     }
 

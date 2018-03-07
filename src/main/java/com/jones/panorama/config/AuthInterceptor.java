@@ -1,4 +1,4 @@
-package com.jones.panorama.interceptor;
+package com.jones.panorama.config;
 
 import com.jones.panorama.util.LoginUtil;
 import org.springframework.context.annotation.Bean;

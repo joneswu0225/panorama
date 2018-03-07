@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Service
 public class UserService {
-    /*@Autowired
+    @Autowired
     private UserRepository userRepository;
 
     public List<User> findAll(){
@@ -22,10 +22,10 @@ public class UserService {
     }
 
     public Page<User> findByPage(Query<User> query){
-        return userRepository.findUserByPage(query);
+        return userRepository.findByPage(query);
     }
 
     public User doLogin(User user){
         return userRepository.findUser(user);
-    }*/
+    }
 }

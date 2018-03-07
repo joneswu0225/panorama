@@ -1,14 +1,8 @@
 package com.jones.panorama.controller;
 
-import com.jones.panorama.model.Query;
-import com.jones.panorama.model.User;
-import com.jones.panorama.service.UserService;
-import com.jones.panorama.util.Page;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 
 /**
@@ -24,4 +18,13 @@ public class HomeController extends BaseController{
     }
 
 
+    @RequestMapping(value = "/sample", method = RequestMethod.GET)
+    public String sample(){
+        return "sample";
+    }
+
+    @RequestMapping(value = "/ws", method = RequestMethod.GET)
+    public String socket(){
+        return "socket";
+    }
 }

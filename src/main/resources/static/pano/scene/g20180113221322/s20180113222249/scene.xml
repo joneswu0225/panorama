@@ -10,15 +10,14 @@
 	<hotspot name="zhang2" type="image" sound_range="90" targetway="3" targeth="67.8" targetv="8.75" targetf="90" onclick="loadpano_way(get(name));" onloaded="hotspot_sync_ui_hide(get(name));hotspot_animate(get(name));VRM_PlayHotspotSound(get(name));" framecurrent="0" distorted="false" url="%FIRSTXML%/files/hotspot/front.png" ath="94.24" atv="28.27" targetscene="g20180113221322/s20180114004602"/>
 	<hotspot name="zhang3" type="image" sound_range="90" targetway="3" targeth="104.97" targetv="12.44" targetf="90" onclick="loadpano_way(get(name));" onloaded="hotspot_sync_ui_hide(get(name));hotspot_animate(get(name));VRM_PlayHotspotSound(get(name));" framecurrent="0" distorted="false" url="%FIRSTXML%/files/hotspot/front.png" ath="141.57" atv="18.22" targetscene="g20180113221322/s20180114015527"/>
 	<hotspot name="sofa" type="image" sound_range="90" targetway="3" targeth="" targetv="" targetf="" onclick="subtxt(actiontxt,get(hotspot[get(i)].onclick),1,4); 
-showhint(get(onclick),1000);
 set(layer[toptxt].html,&quot;欧式沙发&quot;);
 set(layer[pic].url,&quot;%FIRSTXML%/files/sofa.jpg&quot;);
 set(layer[intro].html,&quot;欧式沙发的“豪华”主要是通过体积庞大的真皮沙发体现出来，这些沙发款式多样，线条圆滑，整个造型上体现着现代家具制造工业的先进性。欧式沙发富于现代气息，沙发大多色彩清雅、线条简洁，适合一般家庭选用，同时也能够满足豪宅、别墅业主的使用需求，适用范围很广。&quot;);
-buynowlayer();" onloaded="hotspot_sync_ui_hide(get(name));hotspot_animate(get(name));VRM_PlayHotspotSound(get(name));" framecurrent="0" distorted="false" url="%FIRSTXML%/files/sofaprice.png" ath="-170.02" atv="12.22" edge="leftbottom" scale="0.7" title_string="" title_distorted="true" title_x="0" title_y="0"/>
+buynowlayer();" onloaded="hotspot_sync_ui_hide(get(name));hotspot_animate(get(name));VRM_PlayHotspotSound(get(name));" framecurrent="0" distorted="false" url="%FIRSTXML%/files/sofaprice.png" ath="-170.02" atv="12.22" edge="center" scale="0.7" title_string="" title_distorted="true" title_x="0" title_y="0" zoom="true"/>
 	<hotspot name="light" type="image" sound_range="90" targetway="3" targeth="" targetv="" targetf="" onclick="set(layer[toptxt].html,&quot;水晶吊灯&quot;);
 set(layer[pic].url,&quot;%FIRSTXML%/files/light.jpg&quot;);
 set(layer[intro].html,&quot;水晶吊灯是一种由人工水晶制成的吊灯，具有华丽，高贵的特点。造型独特，时尚，有很高的审美价值。水晶是纯洁高尚的象征，水晶灯饰同样代表着光明和希望。华丽灯饰水晶客厅吊灯装扮璀璨家居灯饰生活。&quot;);
-buynowlayer();" onloaded="hotspot_sync_ui_hide(get(name));hotspot_animate(get(name));VRM_PlayHotspotSound(get(name));" framecurrent="0" distorted="false" url="%FIRSTXML%/files/lightprice.png" ath="116.12" atv="-12.35" edge="leftbottom" scale="0.7"/>
+buynowlayer();" onloaded="hotspot_sync_ui_hide(get(name));hotspot_animate(get(name));VRM_PlayHotspotSound(get(name));" framecurrent="0" distorted="false" url="%FIRSTXML%/files/lightprice.png" ath="133.12" atv="-12.35" edge="center" scale="0.7" zoom="true"/>
 	<image type="CUBE" multires="true" tilesize="512">
 		<level tiledimagewidth="2560" tiledimageheight="2560">
 			<cube url="tiles/l3/%v/l3_%s_%v_%h.jpg"/>

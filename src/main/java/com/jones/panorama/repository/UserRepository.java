@@ -12,21 +12,21 @@ import java.util.List;
 /**
  * Created by jones on 18-1-17.
  */
-//@Repository
+@Repository
 public class UserRepository {
-   /* @Autowired
+    @Autowired
     private UserMapper userMapper;
 
-    public Page<User> findUserByPage(Query<User> query){
-        Integer count = userMapper.findUserCount(query);
-        return new Page<>(query, count, userMapper.findUsers(query));
+    public Page<User> findByPage(Query<User> query){
+        Integer count = userMapper.findCount(query);
+        return new Page<>(query, count, userMapper.findList(query));
     }
 
     public User findUser(User user){
-        return userMapper.findUser(user);
+        return userMapper.findOne(user);
     }
 
     public List<User> findAll(){
         return  userMapper.findAll();
-    }*/
+    }
 }

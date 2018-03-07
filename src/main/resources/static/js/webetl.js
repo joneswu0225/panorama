@@ -1,4 +1,3 @@
-/** Copyright © 2013-2016 DataYes, All Rights Reserved. */
 /**
  * 清空所有本地缓存
  * @param type

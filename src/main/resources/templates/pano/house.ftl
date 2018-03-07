@@ -3,9 +3,13 @@
 <#--<script src='skin/tourloading.js'></script>-->
 <#--<script data-main="js/init" src="js/lib/require.js"></script>-->
 <script src="${project_path}/js/tour.js"></script>
+<script src="${project_path}/js/stomp.js"></script>
+<script src="${project_path}/js/sockjs.min.js"></script>
 <div id="pano" class="pano" style="width:100%;">
     <noscript><table style="width:100%;height:100%"><tr style="vertical-align:middle;text-align:center;"><td>提示:<br><br>浏览器禁用了JavaScript功能<br>解决：工具-〉internet选项-〉安全 选中“internet” 在点击“默认级别”<br></td></tr></table></noscript>
 </div>
+<div><input type="button" id="auto_pause" value="暂停漫游"/><input type="button" id="auto_resume" value="继续漫游"/></div>
+<div><input type="button" id="control" value="启动控制"/><input type="button" id="becontrolled" value="申请被控制"/><input type="button" id="releasecontroll" value="释放控制"/></div>
 <script>
     function addToCart(){
         alert("添加成功！")
@@ -15,11 +19,7 @@
     }
     function selectmobilescaleusage(){
         var ratio = document.body.scrollHeight/ 900;
-        return ratio > 1 ? 1 : ratio;
-//        if(navigator.userAgent.indexOf("Android") >= 0 && navigator.userAgent.indexOf("YYB") >= 0){
-//            return 0.5;
-//        }
-//        return 1;
+        return ratio > 1 ? 1 : ratio
     }
     $("#pano").css("height", (document.body.scrollHeight - 65) + "px");
     embedpano({
@@ -32,13 +32,116 @@
         passQueryParameters:true,
         mobilescale: selectmobilescaleusage(),
         onerror:embedpanoerror,
-        localfallback:"flash"
+        localfallback:"flash",
+        onready: krpanoReady
     });
-    function embedpanoerror()
-    {
+    function krpanoReady(pano) {
+        krpano = pano;
+        krpano.call("trace(krpano is ready...)");
+    }
+    function embedpanoerror(){
         deleteWaitInfoDiv();
         document.write("<div class='centerdiv'><div class='divError'><h1>该浏览器功能有限</h1><h2>请使用其它浏览器观看</h2></div></div>");
     }
+    var stompClient = null;
+    var krpano = null;
+    $("#auto_pause").on("click", function(){
+        var krpano = document.getElementById("tourSWFObject");
+        krpano.call("autorotate.pause()")
+    })
+    $("#auto_resume").on("click", function(){
+        var krpano = document.getElementById("tourSWFObject");
+        krpano.call("autorotate.resume()")
+    })
+    $("#control").on("click", function(){
+        syncScreen.initServer("tourSWFObject", function(){
+            setInterval('syncScreen.syncMsg("tourSWFObject")', 50);
+        });
+    })
+    $("#becontrolled").on("click", function(){
+        syncScreen.initClient("tourSWFObject")
+    })
+    $("#releasecontroll").on("click", function(){
+        syncScreen.disconnect();
+    })
+    function connect(callback) {
+        console.log("start to connect")
+        var socket = new SockJS('/panopipe');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+            console.log('Connected:' + frame);
+            if(callback){
+                callback.call(this, stompClient);
+            }
+        });
+    }
+    function bindClientFunc(stompClient){
+        var krpano = document.getElementById("tourSWFObject");
+        stompClient.subscribe('/client/getLocation', function (frame) {
+            krObj = JSON.parse(frame.body).message;
+            changePanoScene(krpano, krObj);
+        })
+    }
+    function changePanoScene(krpano, krObj){
+        var hlookat = krObj.hlookat;
+        var vlookat = krObj.vlookat;
+        var fov = krObj.fov;
+        var scenepath = krObj.scenepath;
+        var scene_name = scenepath.split("/")[4]
+        if (krpano && krpano.set) {
+            if(scenepath != krpano.get("xml.url")){
+                krpano.call("loadpanoscene('" + scenepath + "', '" + scene_name + "');")
+            }
+            krpano.set("view.hlookat", hlookat);
+            krpano.set("view.vlookat", vlookat);
+            krpano.set("view.fov", fov);
+        } else {
+            console.log("fail to change pano scene")
+        }
+    }
+    function disconnect() {
+        if (stompClient != null) {
+            stompClient.disconnect();
+        }
+        console.log('Disconnected');
+    }
+
+    //实时发送KRPano的视角信息
+    function IntervalSendMessage() {
+        var krpano = document.getElementById("tourSWFObject");
+        if (krpano && krpano.get) {
+            var hlookat = krpano.get("view.hlookat");
+            var vlookat = krpano.get("view.vlookat");
+            var fov = krpano.get("view.fov");
+            var scenepath = krpano.get("xml.url");
+            var krObj = {
+                hlookat: hlookat,
+                vlookat: vlookat,
+                fov: fov,
+                scenepath: scenepath
+            }
+            stompClient.send("/ws/sendLocation", {}, JSON.stringify({message: krObj}));
+        } else {
+            console.log("pano is not undefined")
+        }
+    }
+
+
+    function WSonOpen() {
+        setInterval(IntervalSendMessage, 50);
+    };
+
+    function WSonMessage(event) {
+        console.log(event.data);
+    };
+
+    function WSonClose() {
+        console.log("Websocket closed.");
+    };
+
+    function WSonError() {
+        console.log("Websocket error occur.");
+    };
     $(function(){
         console.log(document.body.clientHeight);
 

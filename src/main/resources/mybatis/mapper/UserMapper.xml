@@ -19,7 +19,7 @@
             left join role r on ur.role_id=r.role_id
     </select>
 
-    <select id="findUsers" resultMap="userMap" parameterType="Query">
+    <select id="findList" resultMap="userMap" parameterType="Query">
         <include refid="com.jones.panorama.mapper.CommonMapper.startPage" />
         select u.*, r.* from user u left join user_role ur on u.user_id=ur.user_id
             left join role r on ur.role_id=r.role_id
@@ -29,17 +29,25 @@
         </if>
         <include refid="com.jones.panorama.mapper.CommonMapper.endPage" />
     </select>
-    <select id="findUserCount" resultType="java.lang.Integer" parameterType="Query">
-        select count(1) from user u left join user_role ur on u.user_id=ur.user_id
-        left join role r on ur.role_id=r.role_id
+    <select id="findCount" resultType="java.lang.Integer" parameterType="Query">
+        select count(1) from user u
         where 1=1
         <if test="query != null and query.username != null and query.username !=''">
             and u.username = #{query.username}
         </if>
     </select>
-    <select id="findUser" resultMap="userMap" parameterType="User">
+    <select id="findOne" resultMap="userMap" parameterType="User">
         select u.*, r.* from user u left join user_role ur on u.user_id=ur.user_id
         left join role r on ur.role_id=r.role_id
         where username = #{username} and password = #{password}
     </select>
+
+    <insert id="insert" parameterType="User">
+        insert into user(username,password)
+        values(#{username}, #{password})
+    </insert>
+
+    <update id="update" parameterType="User">
+        update user set password=#{password} where username=#{username}
+    </update>
 </mapper>

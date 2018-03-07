@@ -14,6 +14,7 @@
 <script src="${project_path}/js/amazeui.min.js"></script>
 <script src="${project_path}/js/amazeui.chosen.js"></script>
 <script src="${project_path}/js/webetl.js"></script>
+<script src="${project_path}/js/pano.js"></script>
 <!--<script src="${project_path}/js/autosize.min.js"></script>
 <script src="${project_path}/js/clipboard.js"></script>-->
 <script>

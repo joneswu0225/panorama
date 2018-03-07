@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jones.panorama.mapper.CommentMapper" >
+    <resultMap id="CommentMap" type="Comment">
+        <id property="commentId" column="comment_id" />
+        <result property="hotspotCode" column="hotspot_code" />
+        <result property="thumbUp" column="thumbup" />
+        <result property="inserttime" column="inserttime" />
+        <association property="user" resultMap="commentUserMap"/>
+    </resultMap>
+    <resultMap id="commentUserMap" type="User">
+        <id property="userId" column="user_id" />
+        <result property="username" column="username" />
+    </resultMap>
+
+    <select id="findList" resultMap="CommentMap" parameterType="Query">
+        <include refid="com.jones.panorama.mapper.CommonMapper.startPage" />
+        select c.*, u.username from comment c left join user u on c.user_id=u.user_id
+        where 1=1
+        <if test="query != null and query.hotspotCode != null and query.hotspotCode !=''">
+            and c.hotspotCode = #{query.hotspotCode}
+        </if>
+        order by comment_id desc
+        <include refid="com.jones.panorama.mapper.CommonMapper.endPage" />
+    </select>
+
+    <select id="findCount" resultType="java.lang.Integer" parameterType="Query">
+        select count(1) from comment c
+        where 1=1
+        <if test="query != null and query.hotspotCode != null and query.hotspotCode !=''">
+            and c.hotspotCode = #{query.hotspotCode}
+        </if>
+    </select>
+    <insert id="insert" parameterType="Comment">
+        insert into comment(hotspot_code, thumbup, content, user_id, inserttime)
+        values(#{hotspotCode}, #{thumbUp}, #{content}, #{user.userId}, now())
+    </insert>
+    <update id="update" parameterType="Comment">
+        update comment set thumbup = #{thumbUp} where comment_id=#{commentId}
+    </update>
+</mapper>
