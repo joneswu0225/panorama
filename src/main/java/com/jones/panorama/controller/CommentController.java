@@ -2,6 +2,7 @@ package com.jones.panorama.controller;
 
 import com.jones.panorama.model.Comment;
 import com.jones.panorama.model.GeneralResponse;
+import com.jones.panorama.model.Thumbup;
 import com.jones.panorama.model.User;
 import com.jones.panorama.service.CommentService;
 import com.jones.panorama.service.UserService;
@@ -44,15 +45,13 @@ public class CommentController extends BaseController{
 
     @ResponseBody
     @RequestMapping(value = "/thumbUp", method = RequestMethod.POST)
-    GeneralResponse changeLikeFlag(@RequestParam(value = "hotspotCode") String hotspotCode,
+    GeneralResponse changeLikeFlag(@RequestParam(value = "sceneCode") String sceneCode,
                                @RequestParam(value = "thumbUp") boolean thumbUp) {
-        Comment comment = new Comment();
-        comment.setHotspotCode(hotspotCode);
-        comment.setThumbUp(thumbUp);
-        commentService.saveComment(comment);
+        Thumbup thumbup = new Thumbup();
+        thumbup.setSceneCode(sceneCode);
+        thumbup.setUserId(getLoginUser().getUserId());
+        commentService.saveThumbup(thumbup);
         return new GeneralResponse(true, "success");
     }
-
-
 
 }

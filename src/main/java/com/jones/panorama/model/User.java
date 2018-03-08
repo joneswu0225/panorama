@@ -4,16 +4,16 @@ package com.jones.panorama.model;
  * Created by jones on 18-1-16.
  */
 public class User {
-    private String userId;
+    private Integer userId;
     private String username;
     private String password;
     private Role role;
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

@@ -6,12 +6,18 @@ import java.util.Date;
  * Created by jones on 18-1-16.
  */
 public class Comment {
-    private String commentId;
+    private Integer commentId;
     private User user;
-    private boolean thumbUp;
-    private String hotspotCode;
-    private String content;
+    private Hotspot hotSpot;
     private Date inserttime;
+
+    public Integer getCommentId() {
+        return commentId;
+    }
+
+    public void setCommentId(Integer commentId) {
+        this.commentId = commentId;
+    }
 
     public User getUser() {
         return user;
@@ -21,36 +27,12 @@ public class Comment {
         this.user = user;
     }
 
-    public String getHotspotCode() {
-        return hotspotCode;
+    public Hotspot getHotSpot() {
+        return hotSpot;
     }
 
-    public void setHotspotCode(String hotspotCode) {
-        this.hotspotCode = hotspotCode;
-    }
-
-    public String getCommentId() {
-        return commentId;
-    }
-
-    public void setCommentId(String commentId) {
-        this.commentId = commentId;
-    }
-
-    public boolean isThumbUp() {
-        return thumbUp;
-    }
-
-    public void setThumbUp(boolean thumbUp) {
-        this.thumbUp = thumbUp;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+    public void setHotSpot(Hotspot hotSpot) {
+        this.hotSpot = hotSpot;
     }
 
     public Date getInserttime() {

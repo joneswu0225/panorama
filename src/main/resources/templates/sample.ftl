@@ -55,7 +55,7 @@
                 <div class="am-g am-margin-top">
                     <div class="am-u-md-4 am-u-end">
                         <input class="am-btn am-btn-success" id="submitComment" type="button" value="提交"/>
-                        <input class="am-btn am-btn-success" id="submitThumbUp" type="button" value="点赞"/>
+                        <#--<input class="am-btn am-btn-success" id="submitThumbUp" type="button" value="点赞"/>-->
                     </div>
                 </div>
             </div>
