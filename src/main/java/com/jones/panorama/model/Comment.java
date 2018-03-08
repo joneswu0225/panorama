@@ -7,8 +7,8 @@ import java.util.Date;
  */
 public class Comment {
     private Integer commentId;
-    private User user;
-    private Hotspot hotSpot;
+    private User user = new User();
+    private Hotspot hotspot = new Hotspot();
     private Date inserttime;
 
     public Integer getCommentId() {
@@ -27,12 +27,12 @@ public class Comment {
         this.user = user;
     }
 
-    public Hotspot getHotSpot() {
-        return hotSpot;
+    public Hotspot getHotspot() {
+        return hotspot;
     }
 
-    public void setHotSpot(Hotspot hotSpot) {
-        this.hotSpot = hotSpot;
+    public void setHotspot(Hotspot hotspot) {
+        this.hotspot = hotspot;
     }
 
     public Date getInserttime() {

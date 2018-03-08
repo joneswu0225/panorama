@@ -4,14 +4,14 @@
     <resultMap id="CommentMap" type="Comment">
         <id property="commentId" column="comment_id" />
         <association property="user" resultMap="commentUserMap"/>
-        <association property="Hotspot" resultMap="commentHotspotMap"/>
+        <association property="hotspot" resultMap="commentHotspotMap"/>
     </resultMap>
     <resultMap id="commentUserMap" type="User">
         <id property="userId" column="user_id" />
         <result property="username" column="username" />
     </resultMap>
     <resultMap id="commentHotspotMap" type="Hotspot">
-        <id property="hotspotCode" column="hotspot_code" />
+        <id property="code" column="hotspot_code" />
         <result property="code" column="code" />
         <result property="catalogName" column="catalog_name" />
         <result property="title" column="title" />
@@ -27,7 +27,7 @@
         <include refid="com.jones.panorama.mapper.CommonMapper.startPage" />
         select c.*, u.username, h.* from comment c
         left join user u on c.user_id=u.user_id
-        left join hotspot h on c.hotspot_code = h.code
+        left join pano_hotspot h on c.hotspot_code = h.code
         where 1=1
         <if test="query != null and query.user.userId != null and query.user.userId !=''">
             and c.user_id = #{query.user.userId}
@@ -35,15 +35,22 @@
         <if test="query != null and query.hotspot.code != null and query.hotspot.code !=''">
             and c.hotspot_code = #{query.hotspot.code}
         </if>
+        <if test="query != null and query.hotspot.sceneCode != null and query.hotspot.sceneCode !=''">
+            and h.scene_code = #{query.hotspot.sceneCode}
+        </if>
         order by comment_id desc
         <include refid="com.jones.panorama.mapper.CommonMapper.endPage" />
     </select>
 
     <select id="findCount" resultType="java.lang.Integer" parameterType="Query">
         select count(1) from comment c
+        left join pano_hotspot h on c.hotspot_code = h.code
         where 1=1
-        <if test="query != null and query.hotspotCode != null and query.hotspotCode !=''">
-            and c.hotspotCode = #{query.hotspotCode}
+        <if test="query != null and query.hotspot.code != null and query.hotspot.code !=''">
+            and c.hotspot_code = #{query.hotspot.code}
+        </if>
+        <if test="query != null and query.hotspot.sceneCode != null and query.hotspot.sceneCode !=''">
+            and h.scene_code = #{query.hotspot.sceneCode}
         </if>
     </select>
     <insert id="insert" parameterType="Comment">

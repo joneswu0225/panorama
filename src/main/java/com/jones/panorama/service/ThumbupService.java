@@ -22,8 +22,8 @@ public class ThumbupService {
         thumbupRepository.save(thumbup);
     }
 
-    public void deleteThumbup(Integer thumbupId){
-        thumbupRepository.delete(thumbupId);
+    public void deleteThumbup(Thumbup thumbup){
+        thumbupRepository.delete(thumbup);
     }
 
     public Integer findCount(Query<Thumbup> query){

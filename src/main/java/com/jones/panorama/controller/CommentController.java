@@ -1,9 +1,6 @@
 package com.jones.panorama.controller;
 
-import com.jones.panorama.model.Comment;
-import com.jones.panorama.model.GeneralResponse;
-import com.jones.panorama.model.Thumbup;
-import com.jones.panorama.model.User;
+import com.jones.panorama.model.*;
 import com.jones.panorama.service.CommentService;
 import com.jones.panorama.service.UserService;
 import com.jones.panorama.util.Page;
@@ -28,17 +25,20 @@ public class CommentController extends BaseController{
 
     @ResponseBody
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public Page list(@RequestParam(value = "hotspotCode") String hotspotCode,
+    public Page list(@RequestParam(value = "hotspotCode", required = false) String hotspotCode,
+                     @RequestParam(value = "sceneCode", required = false) String sceneCode,
                        @RequestParam(value = "size", required = false, defaultValue = "10") int size,
                        @RequestParam(value = "page", required = false, defaultValue = "0") int page){
-        return commentService.findByPage(getQuery(page, size));
+        Comment comment = new Comment();
+        comment.getHotspot().setCode(hotspotCode);
+        comment.getHotspot().setSceneCode(sceneCode);
+        return commentService.findByPage(getQuery(page, size, comment));
     }
 
 
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     GeneralResponse addComment(Comment comment) {
-        comment.setUser(getLoginUser());
         commentService.saveComment(comment);
         return new GeneralResponse(true, "success");
     }

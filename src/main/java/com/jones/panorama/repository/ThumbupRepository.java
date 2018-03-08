@@ -20,8 +20,8 @@ public class ThumbupRepository {
         thumbupMapper.insert(thumbup);
     }
 
-    public void delete(Integer thumbupId){
-        thumbupMapper.delete(thumbupId);
+    public void delete(Thumbup thumbup){
+        thumbupMapper.delete(thumbup);
     }
 
     public Integer findCount(Query<Thumbup> query){

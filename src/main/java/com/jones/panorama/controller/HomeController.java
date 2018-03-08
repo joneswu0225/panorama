@@ -20,7 +20,7 @@ public class HomeController extends BaseController{
 
     @RequestMapping(value = "/sample", method = RequestMethod.GET)
     public String sample(){
-        return "sample";
+        return "test/sample";
     }
 
     @RequestMapping(value = "/ws", method = RequestMethod.GET)

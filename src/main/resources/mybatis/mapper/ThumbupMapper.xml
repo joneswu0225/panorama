@@ -5,17 +5,17 @@
         select count(1) from thumbup
         where 1=1
         <if test="query != null and query.hotspotCode != null and query.hotspotCode !=''">
-            and hotspotCode = #{query.hotspotCode}
+            and hotspot_code = #{query.hotspotCode}
         </if>
         <if test="query != null and query.sceneCode != null and query.sceneCode !=''">
-            and sceneCode = #{query.sceneCode}
+            and scene_code = #{query.sceneCode}
         </if>
     </select>
     <insert id="insert" parameterType="Thumbup">
-        insert into thumb(hotspot_code, thumbup, content, user_id, inserttime)
-        values(#{hotspotCode}, #{thumbUp}, #{content}, #{user.userId}, now())
+        insert into thumbup(hotspot_code, scene_code, user_id, insert_time)
+        values(#{hotspotCode}, #{sceneCode}, #{userId}, now())
     </insert>
-    <delete id="delete" parameterType="java.lang.Integer">
-        delete from thumbup comment_id=#{thumbupId}
+    <delete id="delete" parameterType="Thumbup">
+        delete from thumbup where scene_code=#{sceneCode} and user_id=#{userId}
     </delete>
 </mapper>

@@ -11,27 +11,54 @@ function addComment(comment, callback){
     })
 }
 /**
- * 热点内容点赞
+ * 热点评论列表
+ * @param sceneCode： 场景编号
  * @param hotspotCode： 热点编号
- * @param isThumbUp： 是否点赞
+ * @param page： 页码
+ * @param size： 每页记录数
+ * @param callback： 回调函数
+ */
+function getCommentList(sceneCode, hotspotCode, page, size, callback){
+    doGet("/comment/list", {"sceneCode": sceneCode, "hotspotCode": hotspotCode, "page": page, "size": size}, function(data){
+        if(callback){
+            callback.call(this, data);
+        }
+    })
+}
+
+/**
+ * 添加点赞
+ * @param comment： 点赞信息
  * @param callback: 回调函数
  */
-function submitThumbUp(comment, callback){
-    doPost("/comment/thumbUp",comment, function(data){
+function addThumbup(thumbup, callback){
+    doPost("/thumbup/add",thumbup, function(data){
+        if(callback){
+            callback.call(this, data);
+        }
+    })
+}
+
+/**
+ * 取消点赞
+ * @param comment： 点赞信息
+ * @param userId： 点赞人ID
+ * @param callback: 回调函数
+ */
+function cancelThumbup(sceneCode, userId, callback){
+    doPost("/thumbup/cancel",{"sceneCode": sceneCode, "userId": userId}, function(data){
         if(callback){
             callback.call(this, data);
         }
     })
 }
 /**
- * 热点评论列表
- * @param hotspotCode： 热点编号
- * @param page： 页码
- * @param size： 每页记录数
+ * 获取点赞个数
+ * @param thumbup： 点赞信息
  * @param callback： 回调函数
  */
-function getCommentList(hotspotCode, page, size, callback){
-    doGet("/comment/list", {"hotspotCode": hotspotCode, "page": page, "size": size}, function(data){
+function getThumbupCount(thumbup, callback){
+    doGet("/thumbup/count", thumbup, function(data){
         if(callback){
             callback.call(this, data);
         }

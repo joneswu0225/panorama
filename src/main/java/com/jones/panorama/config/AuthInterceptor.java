@@ -49,11 +49,13 @@ public class AuthInterceptor extends WebMvcConfigurerAdapter {
             if (request.getQueryString() != null) {
                 url += "?" + request.getQueryString();
             }
-            if (session.getAttribute(LoginUtil.CUR_USER) != null)
+            if (session.getAttribute(LoginUtil.CUR_USER) != null) {
                 return true;
+            }
             //跳转登录
-            response.sendRedirect("/login" + ((url.contains("/error")) ? "" : ("?callback=" + url)));
-            return false;
+//            response.sendRedirect("/login" + ((url.contains("/error")) ? "" : ("?callback=" + url)));
+//            return false;
+            return true;
         }
     }
 }

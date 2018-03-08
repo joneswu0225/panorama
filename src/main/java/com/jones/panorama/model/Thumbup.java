@@ -7,9 +7,19 @@ import java.util.Date;
  */
 public class Thumbup {
     private Integer userId;
+    private Integer thumbupId;
     private String hotspotCode;
     private String sceneCode;
     private Date insertTime;
+
+
+    public Integer getThumbupId() {
+        return thumbupId;
+    }
+
+    public void setThumbupId(Integer thumbupId) {
+        this.thumbupId = thumbupId;
+    }
 
     public Integer getUserId() {
         return userId;

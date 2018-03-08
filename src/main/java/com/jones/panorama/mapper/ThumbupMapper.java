@@ -13,5 +13,5 @@ public interface ThumbupMapper {
 
     void insert(Thumbup thumbup);
 
-    void delete(Integer thumbupId);
+    void delete(Thumbup thumbup);
 }

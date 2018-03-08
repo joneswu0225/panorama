@@ -8,7 +8,7 @@ import java.util.Date;
 public class Hotspot {
     private Integer hotspotId;
     private String code;
-    private String catelogName;
+    private String catalogName;
     private String title;
     private String content;
     private Integer ath;
@@ -18,7 +18,7 @@ public class Hotspot {
     private String hover;
     private String out;
     private String styleName;
-    private String sceneName;
+    private String sceneCode;
     private Date insertTime;
 
     public Integer getHotspotId() {
@@ -37,12 +37,12 @@ public class Hotspot {
         this.code = code;
     }
 
-    public String getCatelogName() {
-        return catelogName;
+    public String getCatalogName() {
+        return catalogName;
     }
 
-    public void setCatelogName(String catelogName) {
-        this.catelogName = catelogName;
+    public void setCatelogName(String catalogName) {
+        this.catalogName = catalogName;
     }
 
     public String getTitle() {
@@ -109,12 +109,16 @@ public class Hotspot {
         this.styleName = styleName;
     }
 
-    public String getSceneName() {
-        return sceneName;
+    public void setCatalogName(String catalogName) {
+        this.catalogName = catalogName;
     }
 
-    public void setSceneName(String sceneName) {
-        this.sceneName = sceneName;
+    public String getSceneCode() {
+        return sceneCode;
+    }
+
+    public void setSceneCode(String sceneCode) {
+        this.sceneCode = sceneCode;
     }
 
     public String getContent() {

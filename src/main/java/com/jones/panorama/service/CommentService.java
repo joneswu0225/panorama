@@ -28,7 +28,7 @@ public class CommentService {
     }
 
     public void saveComment(Comment comment){
-        hotspotRepository.save(comment.getHotSpot());
+        hotspotRepository.save(comment.getHotspot());
         commentRepository.save(comment);
     }
 

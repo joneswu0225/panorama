@@ -20,8 +20,16 @@ public class CommentRepository {
     private CommentMapper commentMapper;
 
     public Page<Comment> findByPage(Query<Comment> query){
-        Integer count = commentMapper.findCount(query);
-        return new Page<>(query, count, commentMapper.findList(query));
+        Integer count = findCount(query);
+        return new Page<>(query, count, findList(query));
+    }
+
+    public List<Comment> findList(Query<Comment> query){
+        return commentMapper.findList(query);
+    }
+
+    public Integer findCount(Query<Comment> query){
+        return commentMapper.findCount(query);
     }
 
     public void save(Comment comment){
