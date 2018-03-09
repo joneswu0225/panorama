@@ -7,6 +7,14 @@ public class SocketMessage {
     private Object message;
     private String date;
 
+    public SocketMessage(){
+        super();
+    }
+    public SocketMessage(Object message, String date) {
+        this.message = message;
+        this.date = date;
+    }
+
     public Object getMessage() {
         return message;
     }

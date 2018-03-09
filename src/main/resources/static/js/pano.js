@@ -68,16 +68,20 @@ function getThumbupCount(thumbup, callback){
 var syncScreen = {
     stompClient: null,
     frequent: 50,
+    code: null,
     init: function(data){
         syncScreen.frequent = data.frequent;
     },
-    connect: function (callback) {
+    connect: function (data, callback) {
+        if(!data){
+            data = {}
+        }
         var socket = new SockJS('/panopipe');
         syncScreen.stompClient = Stomp.over(socket);
-        syncScreen.stompClient.connect({}, function (frame) {
+        syncScreen.stompClient.connect(data, function (frame) {
             console.log('Connected:' + frame);
             if(callback){
-                callback.call(this, stompClient);
+                callback.call(this, syncScreen.stompClient);
             }
         });
     },
@@ -117,21 +121,28 @@ var syncScreen = {
                 fov: fov,
                 scenepath: scenepath
             }
-            syncScreen.stompClient.send("/ws/sendLocation", {}, JSON.stringify({message: krObj}));
+            syncScreen.stompClient.send("/ws/sendLocation", {"code": syncScreen.code}, JSON.stringify({message: krObj}));
         } else {
             console.log("pano is not undefined")
         }
     },
+    syncCommonMsg: function(data){
+        syncScreen.stompClient.send("/ws/sendLocation", {"code": syncScreen.code}, JSON.stringify({message: {"data":data}}));
+    },
     initServer: function(panoId, callback){
-        syncScreen.connect(function(){
-            if(callback){
-                callback.call(this, stompClient);
-            }
+        doGet("/ws/getCode", {}, function(data){
+            var code = data['msg'];
+            syncScreen.code = code
+            syncScreen.connect({"code": code}, function(){
+                if(callback){
+                    callback.call(this, code);
+                }
+            })
         })
     },
-    initClient: function(panoId){
-        var stompClient = syncScreen.stompClient;
-        syncScreen.connect(function(){
+    initClient: function(code, panoId){
+        var config = {"code": code};
+        syncScreen.connect(config, function(stompClient){
             var krpano = document.getElementById(panoId);
             stompClient.subscribe('/client/getLocation', function (frame) {
                 krObj = JSON.parse(frame.body).message;

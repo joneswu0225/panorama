@@ -43,108 +43,30 @@
         deleteWaitInfoDiv();
         document.write("<div class='centerdiv'><div class='divError'><h1>该浏览器功能有限</h1><h2>请使用其它浏览器观看</h2></div></div>");
     }
-    var stompClient = null;
     var krpano = null;
+
     $("#auto_pause").on("click", function(){
         var krpano = document.getElementById("tourSWFObject");
         krpano.call("autorotate.pause()")
     })
+
     $("#auto_resume").on("click", function(){
         var krpano = document.getElementById("tourSWFObject");
         krpano.call("autorotate.resume()")
     })
+
     $("#control").on("click", function(){
         syncScreen.initServer("tourSWFObject", function(){
             setInterval('syncScreen.syncMsg("tourSWFObject")', 50);
         });
     })
+
     $("#becontrolled").on("click", function(){
         syncScreen.initClient("tourSWFObject")
     })
+
     $("#releasecontroll").on("click", function(){
         syncScreen.disconnect();
-    })
-    function connect(callback) {
-        console.log("start to connect")
-        var socket = new SockJS('/panopipe');
-        stompClient = Stomp.over(socket);
-        stompClient.connect({}, function (frame) {
-            console.log('Connected:' + frame);
-            if(callback){
-                callback.call(this, stompClient);
-            }
-        });
-    }
-    function bindClientFunc(stompClient){
-        var krpano = document.getElementById("tourSWFObject");
-        stompClient.subscribe('/client/getLocation', function (frame) {
-            krObj = JSON.parse(frame.body).message;
-            changePanoScene(krpano, krObj);
-        })
-    }
-    function changePanoScene(krpano, krObj){
-        var hlookat = krObj.hlookat;
-        var vlookat = krObj.vlookat;
-        var fov = krObj.fov;
-        var scenepath = krObj.scenepath;
-        var scene_name = scenepath.split("/")[4]
-        if (krpano && krpano.set) {
-            if(scenepath != krpano.get("xml.url")){
-                krpano.call("loadpanoscene('" + scenepath + "', '" + scene_name + "');")
-            }
-            krpano.set("view.hlookat", hlookat);
-            krpano.set("view.vlookat", vlookat);
-            krpano.set("view.fov", fov);
-        } else {
-            console.log("fail to change pano scene")
-        }
-    }
-    function disconnect() {
-        if (stompClient != null) {
-            stompClient.disconnect();
-        }
-        console.log('Disconnected');
-    }
-
-    //实时发送KRPano的视角信息
-    function IntervalSendMessage() {
-        var krpano = document.getElementById("tourSWFObject");
-        if (krpano && krpano.get) {
-            var hlookat = krpano.get("view.hlookat");
-            var vlookat = krpano.get("view.vlookat");
-            var fov = krpano.get("view.fov");
-            var scenepath = krpano.get("xml.url");
-            var krObj = {
-                hlookat: hlookat,
-                vlookat: vlookat,
-                fov: fov,
-                scenepath: scenepath
-            }
-            stompClient.send("/ws/sendLocation", {}, JSON.stringify({message: krObj}));
-        } else {
-            console.log("pano is not undefined")
-        }
-    }
-
-
-    function WSonOpen() {
-        setInterval(IntervalSendMessage, 50);
-    };
-
-    function WSonMessage(event) {
-        console.log(event.data);
-    };
-
-    function WSonClose() {
-        console.log("Websocket closed.");
-    };
-
-    function WSonError() {
-        console.log("Websocket error occur.");
-    };
-    $(function(){
-        console.log(document.body.clientHeight);
-
     })
 </script>
 <#include "../common/footer.ftl"/>
