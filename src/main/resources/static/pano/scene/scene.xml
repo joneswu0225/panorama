@@ -1,6 +1,0 @@
-﻿<krpano  basedir="%FIRSTXML%">
-	<This scenename=""/>
-	<view hlookat="0" vlookat="0" fovtype="VFOV" fov="100" fovmin="60" fovmax="150" />
-	<preview type="grid(cube,16,16,512,0xCCCCCC,0xF6F6F6,0x999999);" details="16" />	
-	<events onxmlcomplete="VRM_OnXmlComplete();" onpreviewcomplete="VRM_OnLoadComplete();" />
-</krpano>
