@@ -32,9 +32,9 @@
         <if test="query != null and query.user.userId != null and query.user.userId !=''">
             and c.user_id = #{query.user.userId}
         </if>
-        <if test="query != null and query.hotspot.code != null and query.hotspot.code !=''">
+        <!--<if test="query != null and query.hotspot.code != null and query.hotspot.code !=''">
             and c.hotspot_code = #{query.hotspot.code}
-        </if>
+        </if>-->
         <if test="query != null and query.hotspot.sceneCode != null and query.hotspot.sceneCode !=''">
             and h.scene_code = #{query.hotspot.sceneCode}
         </if>
@@ -46,9 +46,9 @@
         select count(1) from comment c
         left join pano_hotspot h on c.hotspot_code = h.code
         where 1=1
-        <if test="query != null and query.hotspot.code != null and query.hotspot.code !=''">
+        <!--<if test="query != null and query.hotspot.code != null and query.hotspot.code !=''">
             and c.hotspot_code = #{query.hotspot.code}
-        </if>
+        </if>-->
         <if test="query != null and query.hotspot.sceneCode != null and query.hotspot.sceneCode !=''">
             and h.scene_code = #{query.hotspot.sceneCode}
         </if>

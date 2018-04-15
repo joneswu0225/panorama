@@ -53,7 +53,8 @@
             var thumbUp = $("#form-comment-edit input[name='thumbUp']").val();
             var content = $("#form-comment-edit textarea[name='content']").val();
             console.log($("#form-comment-edit").serializeArray())
-            addComment($("#form-comment-edit").serializeArray(), function(data){
+            addComment({"code":"123",""}, function(data){
+
                 console.log(data);
                 alert("添加评论成功！")
             })

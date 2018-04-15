@@ -51,6 +51,7 @@ public class WebSocketController extends BaseController{
         webAgentSessionRegistry.getSessionIds(code).forEach(p->{
             template.convertAndSendToUser(p, "/client/getLocation", message, createHeaders(p));
         });
+//        template.convertAndSend("/client/getLocation", message);
         return message;
     }
 
