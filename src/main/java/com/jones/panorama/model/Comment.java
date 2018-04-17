@@ -9,7 +9,7 @@ public class Comment {
     private Integer commentId;
     private User user = new User();
     private Hotspot hotspot = new Hotspot();
-    private Date inserttime;
+    private Date insertTime;
 
     public Integer getCommentId() {
         return commentId;
@@ -35,11 +35,11 @@ public class Comment {
         this.hotspot = hotspot;
     }
 
-    public Date getInserttime() {
-        return inserttime;
+    public Date getInsertTime() {
+        return insertTime;
     }
 
-    public void setInserttime(Date inserttime) {
-        this.inserttime = inserttime;
+    public void setInsertTime(Date insertTime) {
+        this.insertTime = insertTime;
     }
 }
