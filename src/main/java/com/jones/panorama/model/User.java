@@ -1,8 +1,5 @@
 package com.jones.panorama.model;
 
-/**
- * Created by jones on 18-1-16.
- */
 public class User {
     private Integer userId;
     private String username;
@@ -10,7 +7,7 @@ public class User {
     private Role role;
 
     public Integer getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public void setUserId(Integer userId) {
@@ -18,7 +15,7 @@ public class User {
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public void setUsername(String username) {
@@ -26,7 +23,7 @@ public class User {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
@@ -34,10 +31,11 @@ public class User {
     }
 
     public Role getRole() {
-        return role;
+        return this.role;
     }
 
     public void setRole(Role role) {
         this.role = role;
     }
 }
+

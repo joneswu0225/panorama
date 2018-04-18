@@ -1,17 +1,15 @@
 package com.jones.panorama.mapper;
 
-import com.jones.panorama.model.Comment;
 import com.jones.panorama.model.Query;
 import com.jones.panorama.model.Thumbup;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface ThumbupMapper {
-    Integer findCount(Query query);
+public abstract interface ThumbupMapper {
+    public abstract Integer findCount(Query paramQuery);
 
-    void insert(Thumbup thumbup);
+    public abstract void insert(Thumbup paramThumbup);
 
-    void delete(Thumbup thumbup);
+    public abstract void delete(Thumbup paramThumbup);
 }
+

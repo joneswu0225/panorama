@@ -1,22 +1,19 @@
 package com.jones.panorama.model;
 
-/**
- * Created by jones on 18-1-22.
- */
 public class SocketMessage {
     private Object message;
     private String date;
 
-    public SocketMessage(){
-        super();
+    public SocketMessage() {
     }
+
     public SocketMessage(Object message, String date) {
         this.message = message;
         this.date = date;
     }
 
     public Object getMessage() {
-        return message;
+        return this.message;
     }
 
     public void setMessage(Object message) {
@@ -24,7 +21,7 @@ public class SocketMessage {
     }
 
     public String getDate() {
-        return date;
+        return this.date;
     }
 
     public void setDate(String date) {

@@ -9,6 +9,7 @@
 <div>
 <script>
     $(function(){
+        clearLocalStorage()
         $('#btn-login').on('click', function(){
             if(checkBlank("form-login", $("#username"), "用户名") && checkBlank("form-login", $("#password"), "密码")){
                 doPost("/user/auth", $("#form-login").serializeArray(), function(result){
@@ -16,7 +17,7 @@
                         if(location.search.indexOf("callback")>=0){
                             location.replace(location.search.split("callback=")[1]);
                         }else{
-                            windowLocate("/pano/house");
+                            windowLocate("/pano/scene/list");
                         }
                     } else{
                         showReminder("form-login", result['msg'])

@@ -30,13 +30,12 @@
 <script>
     $(function(){
         $("#getComments").on("click", function(){
-            var hotspotCode = $("#form-comment-list input[name='hotspotCode']").val();
             var sceneCode = $("#form-comment-list input[name='sceneCode']").val();
             var page = $("#form-comment-list input[name='pageNum']").val();
             var size = $("#form-comment-list input[name='pageSize']").val();
-            getCommentList({"hotspotCode": hotspotCode, "sceneCode": sceneCode, "page": page, "size": size}, function(data){
+            getHotspotList({"sceneCode": sceneCode, "page": page, "size": size}, function(data){
                 console.log(data);
-                windowOpen("/comment/list?hotspotCode=" + hotspotCode + "&sceneCode=" + sceneCode + "&page=" + page + "&size=" + size);
+                windowOpen("/pano/hotspotList?sceneCode=" + sceneCode + "&page=" + page + "&size=" + size);
             })
         })
     })

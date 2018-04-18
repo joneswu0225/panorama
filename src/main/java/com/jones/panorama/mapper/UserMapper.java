@@ -7,12 +7,16 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserMapper {
-    List<User> findAll();
-    List<User> findList(Query query);
-    Integer findCount(Query query);
-    User findOne(User user);
+public abstract interface UserMapper {
+    public abstract List<User> findAll();
 
-    void insert(User user);
-    void update(User user);
+    public abstract List<User> findList(Query paramQuery);
+
+    public abstract Integer findCount(Query paramQuery);
+
+    public abstract User findOne(User paramUser);
+
+    public abstract void insert(User paramUser);
+
+    public abstract void update(User paramUser);
 }

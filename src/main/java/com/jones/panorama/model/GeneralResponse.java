@@ -2,15 +2,11 @@ package com.jones.panorama.model;
 
 import com.alibaba.fastjson.JSONObject;
 
-/**
- * Created by mayaming on 10/10/17.
- */
 public class GeneralResponse {
     private boolean suc;
     private String msg;
 
     public GeneralResponse() {
-        super();
     }
 
     public GeneralResponse(boolean suc, String msg) {
@@ -19,7 +15,7 @@ public class GeneralResponse {
     }
 
     public boolean isSuc() {
-        return suc;
+        return this.suc;
     }
 
     public void setSuc(boolean suc) {
@@ -27,15 +23,15 @@ public class GeneralResponse {
     }
 
     public String getMsg() {
-        return msg;
+        return this.msg;
     }
 
     public void setMsg(String msg) {
         this.msg = msg;
     }
 
-    @Override
     public String toString() {
         return JSONObject.toJSONString(this);
     }
 }
+

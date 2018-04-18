@@ -2,27 +2,24 @@ package com.jones.panorama.model;
 
 import java.util.Date;
 
-/**
- * Created by jones on 18-1-16.
- */
 public class Hotspot {
     private Integer hotspotId;
     private String code;
     private String catalogName;
     private String title;
     private String content;
-    private Integer ath;
-    private Integer atv;
-    private String onclick;
-    private String onload;
-    private String hover;
-    private String out;
+    private float ath;
+    private float atv;
+    private String onclick = "";
+    private String onload = "";
+    private String hover = "";
+    private String out = "";
     private String styleName;
     private String sceneCode;
     private Date insertTime;
 
     public Integer getHotspotId() {
-        return hotspotId;
+        return this.hotspotId;
     }
 
     public void setHotspotId(Integer hotspotId) {
@@ -30,7 +27,7 @@ public class Hotspot {
     }
 
     public String getCode() {
-        return code;
+        return this.code;
     }
 
     public void setCode(String code) {
@@ -38,7 +35,7 @@ public class Hotspot {
     }
 
     public String getCatalogName() {
-        return catalogName;
+        return this.catalogName;
     }
 
     public void setCatelogName(String catalogName) {
@@ -46,31 +43,31 @@ public class Hotspot {
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public Integer getAth() {
-        return ath;
+    public float getAth() {
+        return this.ath;
     }
 
-    public void setAth(Integer ath) {
+    public void setAth(float ath) {
         this.ath = ath;
     }
 
-    public Integer getAtv() {
-        return atv;
+    public float getAtv() {
+        return this.atv;
     }
 
-    public void setAtv(Integer atv) {
+    public void setAtv(float atv) {
         this.atv = atv;
     }
 
     public String getOnclick() {
-        return onclick;
+        return this.onclick;
     }
 
     public void setOnclick(String onclick) {
@@ -78,7 +75,7 @@ public class Hotspot {
     }
 
     public String getOnload() {
-        return onload;
+        return this.onload;
     }
 
     public void setOnload(String onload) {
@@ -86,7 +83,7 @@ public class Hotspot {
     }
 
     public String getHover() {
-        return hover;
+        return this.hover;
     }
 
     public void setHover(String hover) {
@@ -94,7 +91,7 @@ public class Hotspot {
     }
 
     public String getOut() {
-        return out;
+        return this.out;
     }
 
     public void setOut(String out) {
@@ -102,7 +99,7 @@ public class Hotspot {
     }
 
     public String getStyleName() {
-        return styleName;
+        return this.styleName;
     }
 
     public void setStyleName(String styleName) {
@@ -114,7 +111,7 @@ public class Hotspot {
     }
 
     public String getSceneCode() {
-        return sceneCode;
+        return this.sceneCode;
     }
 
     public void setSceneCode(String sceneCode) {
@@ -122,7 +119,7 @@ public class Hotspot {
     }
 
     public String getContent() {
-        return content;
+        return this.content;
     }
 
     public void setContent(String content) {
@@ -130,10 +127,11 @@ public class Hotspot {
     }
 
     public Date getInsertTime() {
-        return insertTime;
+        return this.insertTime;
     }
 
     public void setInsertTime(Date insertTime) {
         this.insertTime = insertTime;
     }
 }
+

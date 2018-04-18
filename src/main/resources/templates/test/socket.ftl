@@ -17,7 +17,6 @@
         });
     })
 
-
     $("#sendMsg").on("click", function(){
         syncScreen.syncCommonMsg($("#message").val());
     })

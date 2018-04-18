@@ -1,26 +1,23 @@
 package com.jones.panorama.config;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.web.socket.messaging.SessionConnectEvent;
 
-/**
- * Created by jones on 18-3-8.
- * STOMP监听类
- * 用于session注册 以及key值获取
- */
-public class STOMPConnectEventListener  implements ApplicationListener<SessionConnectEvent> {
+public class STOMPConnectEventListener
+        implements ApplicationListener<SessionConnectEvent> {
 
     @Autowired
     SocketSessionRegistry webAgentSessionRegistry;
 
-    @Override
     public void onApplicationEvent(SessionConnectEvent event) {
         StompHeaderAccessor sha = StompHeaderAccessor.wrap(event.getMessage());
-        //login get from browser
-        String agentId = sha.getNativeHeader("code").get(0);
+
+        String agentId = (String) sha.getNativeHeader("code").get(0);
         String sessionId = sha.getSessionId();
-        webAgentSessionRegistry.registerSessionId(agentId,sessionId);
+        this.webAgentSessionRegistry.registerSessionId(agentId, sessionId);
     }
 }

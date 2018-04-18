@@ -7,9 +7,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CommentMapper {
-    List<Comment> findList(Query query);
-    Integer findCount(Query query);
-    void insert(Comment comment);
-    void update(Comment comment);
+public abstract interface CommentMapper {
+    public abstract List<Comment> findList(Query paramQuery);
+
+    public abstract Integer findCount(Query paramQuery);
+
+    public abstract void insert(Comment paramComment);
+
+    public abstract void update(Comment paramComment);
 }

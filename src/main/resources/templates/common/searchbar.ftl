@@ -1,19 +1,19 @@
 <select>
-<#if type="user">
+<#if type="style">
     <#list list as item>
-        <option value="${item.username!}">${item.username!}</option>
+        <option value="${item.code!}">${item.text!}</option>
     </#list>
-<#elseif type="tag">
+<#elseif type="catalog">
     <#list list as item>
-        <option value="${item.id!}">${item.tagName!}</option>
+        <option value="${item.name!}">${item.detail!}</option>
     </#list>
-<#elseif type="cron">
+<#elseif type="scene">
     <#list list as item>
-        <option value="${item.cronExpr!}">${item.cronName!} / ${item.cronExpr!}</option>
+        <option value="${item.code!}">${item.title!}</option>
     </#list>
-<#elseif type="job">
+<#elseif type="hotspot">
     <#list list as item>
-        <option value="${item.id!}">${item.jobName!}</option>
+        <option value="${item.code!}">${item.title!}</option>
     </#list>
 <#else>
 </#if>

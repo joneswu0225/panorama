@@ -2,9 +2,6 @@ package com.jones.panorama.model;
 
 import java.util.Date;
 
-/**
- * Created by jones on 18-1-16.
- */
 public class Thumbup {
     private Integer userId;
     private Integer thumbupId;
@@ -12,9 +9,8 @@ public class Thumbup {
     private String sceneCode;
     private Date insertTime;
 
-
     public Integer getThumbupId() {
-        return thumbupId;
+        return this.thumbupId;
     }
 
     public void setThumbupId(Integer thumbupId) {
@@ -22,7 +18,7 @@ public class Thumbup {
     }
 
     public Integer getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public void setUserId(Integer userId) {
@@ -30,7 +26,7 @@ public class Thumbup {
     }
 
     public String getHotspotCode() {
-        return hotspotCode;
+        return this.hotspotCode;
     }
 
     public void setHotspotCode(String hotspotCode) {
@@ -38,7 +34,7 @@ public class Thumbup {
     }
 
     public String getSceneCode() {
-        return sceneCode;
+        return this.sceneCode;
     }
 
     public void setSceneCode(String sceneCode) {
@@ -46,10 +42,11 @@ public class Thumbup {
     }
 
     public Date getInsertTime() {
-        return insertTime;
+        return this.insertTime;
     }
 
     public void setInsertTime(Date insertTime) {
         this.insertTime = insertTime;
     }
 }
+

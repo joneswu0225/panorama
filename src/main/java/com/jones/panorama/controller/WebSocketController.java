@@ -9,35 +9,26 @@ import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.*;
 
 
 /**
  * Created by jones on 18-1-16.
  */
 @Controller
-@RequestMapping( "/ws" )
-public class WebSocketController extends BaseController{
+@RequestMapping("/ws")
+public class WebSocketController extends BaseController {
     private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     @Autowired
     private SimpMessagingTemplate template;
@@ -48,7 +39,7 @@ public class WebSocketController extends BaseController{
     public SocketMessage send(SocketMessage message, @Header("code") String code,
                               @Headers Map<String, Object> headers) throws Exception {
         message.setDate(df.format(new Date()));
-        webAgentSessionRegistry.getSessionIds(code).forEach(p->{
+        webAgentSessionRegistry.getSessionIds(code).forEach(p -> {
             template.convertAndSendToUser(p, "/client/getLocation", message, createHeaders(p));
         });
 //        template.convertAndSend("/client/getLocation", message);

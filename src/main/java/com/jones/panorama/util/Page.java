@@ -4,61 +4,49 @@ import com.jones.panorama.model.Query;
 
 import java.util.List;
 
-/**
- * Created by jones on 18-1-16.
- */
 public class Page<T> {
-    // 当前页
-    private Integer currentPage = 1;
+    private Integer currentPage = Integer.valueOf(1);
     private Integer number;
-    // 每页显示的总条数
-    private Integer pageSize = 20;
-    // 总条数
+    private Integer pageSize = Integer.valueOf(20);
     private Integer totalElements;
-    // 是否有下一页
     private Integer isMore;
-    // 总页数
     private Integer totalPages;
-    // 开始索引
     private Integer startIndex;
-    // 分页结果
     private List<T> content;
 
     public Page() {
-        super();
     }
 
     public Page(Integer currentPage, Integer pageSize, Integer totalNum, List<T> content) {
-        super();
-        currentPage = currentPage < 1 ? 1 : currentPage;
+        currentPage = Integer.valueOf(currentPage.intValue() < 1 ? 1 : currentPage.intValue());
         this.currentPage = currentPage;
-        this.number = currentPage - 1;
+        this.number = Integer.valueOf(currentPage.intValue() - 1);
         this.pageSize = pageSize;
         this.totalElements = totalNum;
-        this.totalPages = (this.totalElements+this.pageSize-1)/this.pageSize;
-        this.startIndex = (this.currentPage-1)*this.pageSize;
-        this.isMore = this.currentPage >= this.totalPages?0:1;
+        this.totalPages = Integer.valueOf((this.totalElements.intValue() + this.pageSize.intValue() - 1) / this.pageSize.intValue());
+        this.startIndex = Integer.valueOf((this.currentPage.intValue() - 1) * this.pageSize.intValue());
+        this.isMore = Integer.valueOf(this.currentPage.intValue() >= this.totalPages.intValue() ? 0 : 1);
         this.content = content;
     }
 
     public Integer getCurrentPage() {
-        return currentPage;
+        return this.currentPage;
     }
 
     public void setCurrentPage(Integer currentPage) {
         this.currentPage = currentPage;
     }
 
-    public Page(Query query, Integer totalNum, List<T> content){
-        this(query.getCurrentPage(), query.getPageSize(), totalNum, content);
+    public Page(Query query, Integer totalNum, List<T> content) {
+        this(Integer.valueOf(query.getCurrentPage()), Integer.valueOf(query.getPageSize()), totalNum, content);
     }
 
-    public Page(Query query, Integer totalNum){
-        this(query.getCurrentPage(), query.getPageSize(), totalNum, null);
+    public Page(Query query, Integer totalNum) {
+        this(Integer.valueOf(query.getCurrentPage()), Integer.valueOf(query.getPageSize()), totalNum, null);
     }
 
     public Integer getNumber() {
-        return number;
+        return this.number;
     }
 
     public void setNumber(Integer number) {
@@ -66,7 +54,7 @@ public class Page<T> {
     }
 
     public Integer getPageSize() {
-        return pageSize;
+        return this.pageSize;
     }
 
     public void setPageSize(Integer pageSize) {
@@ -74,7 +62,7 @@ public class Page<T> {
     }
 
     public Integer getIsMore() {
-        return isMore;
+        return this.isMore;
     }
 
     public void setIsMore(Integer isMore) {
@@ -82,7 +70,7 @@ public class Page<T> {
     }
 
     public Integer getTotalPages() {
-        return totalPages;
+        return this.totalPages;
     }
 
     public void setTotalPages(Integer totalPages) {
@@ -90,8 +78,7 @@ public class Page<T> {
     }
 
     public Integer getTotalElements() {
-
-        return totalElements;
+        return this.totalElements;
     }
 
     public void setTotalElements(Integer totalElements) {
@@ -99,7 +86,7 @@ public class Page<T> {
     }
 
     public Integer getStartIndex() {
-        return startIndex;
+        return this.startIndex;
     }
 
     public void setStartIndex(Integer startIndex) {
@@ -107,10 +94,11 @@ public class Page<T> {
     }
 
     public List<T> getContent() {
-        return content;
+        return this.content;
     }
 
     public void setContent(List<T> content) {
         this.content = content;
     }
 }
+

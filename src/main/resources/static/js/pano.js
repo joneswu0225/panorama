@@ -1,10 +1,10 @@
 /**
- * 新增评论
- * @param comment：comment 的具体内容
+ * 新增热点
+ * @param hotspot：hotspot 的具体内容
  * @param callback: 回调函数
  */
-function addComment(comment, callback){
-    doPost("/comment/add", comment, function(data){
+function addHotspot(hotspot, callback){
+    doPost("/pano/addHotspot", hotspot, function(data){
         if(callback){
             callback.call(this, data);
         }
@@ -13,18 +13,39 @@ function addComment(comment, callback){
 /**
  * 热点评论列表
  * @param sceneCode： 场景编号
- * @param hotspotCode： 热点编号
  * @param page： 页码
  * @param size： 每页记录数
  * @param callback： 回调函数
  */
-function getCommentList(sceneCode, hotspotCode, page, size, callback){
-    doGet("/comment/list", {"sceneCode": sceneCode, "hotspotCode": hotspotCode, "page": page, "size": size}, function(data){
+function getHotspotList(sceneCode, callback){
+    getHotspotByPage(sceneCode, 1, 10000, callback);
+}
+
+function getAllHotspots(callback){
+    doGet("/pano/hotspots", {}, function(data){
         if(callback){
             callback.call(this, data);
         }
     })
 }
+
+function getAllScenes(callback){
+    doGet("/pano/scenes", {}, function(data){
+        if(callback){
+            callback.call(this, data);
+        }
+    })
+}
+
+function getHotspotByPage(sceneCode, page, size, callback){
+    console.log(sceneCode)
+    doGet("/pano/hotspotList", {"sceneCode": sceneCode, "page": page, "size": size}, function(data){
+        if(callback){
+            callback.call(this, data);
+        }
+    })
+}
+
 
 /**
  * 添加点赞
@@ -144,9 +165,9 @@ var syncScreen = {
         var config = {"code": code};
         syncScreen.connect(config, function(stompClient){
             var krpano = document.getElementById(panoId);
-            stompClient.subscribe('/client/getLocation', function (frame) {
+            stompClient.subscribe('/user/client/getLocation', function (frame) {
                 krObj = JSON.parse(frame.body).message;
-                this.changePanoScene(krpano, krObj);
+                syncScreen.changePanoScene(krpano, krObj);
             })
         })
     }
