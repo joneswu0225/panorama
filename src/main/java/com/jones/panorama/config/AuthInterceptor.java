@@ -34,6 +34,7 @@ public class AuthInterceptor extends WebMvcConfigurerAdapter {
         addInterceptor.excludePathPatterns("/login**");
         addInterceptor.excludePathPatterns("/user/auth**");
         addInterceptor.excludePathPatterns("/logout**");
+        addInterceptor.excludePathPatterns("/pano**");
 
         // 拦截配置
         addInterceptor.addPathPatterns("/**");

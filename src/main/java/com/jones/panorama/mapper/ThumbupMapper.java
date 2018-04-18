@@ -5,11 +5,11 @@ import com.jones.panorama.model.Thumbup;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public abstract interface ThumbupMapper {
-    public abstract Integer findCount(Query paramQuery);
+public interface ThumbupMapper {
+    Integer findCount(Query paramQuery);
 
-    public abstract void insert(Thumbup paramThumbup);
+    void insert(Thumbup paramThumbup);
 
-    public abstract void delete(Thumbup paramThumbup);
+    void delete(Thumbup paramThumbup);
 }
 

@@ -8,7 +8,8 @@ import com.jones.panorama.model.GeneralResponse;
  import org.springframework.stereotype.Controller;
  import org.springframework.ui.ModelMap;
  import org.springframework.web.bind.annotation.RequestMapping;
- import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
  import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -19,7 +20,7 @@ public class UserController extends BaseController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = {"/list"}, method = {org.springframework.web.bind.annotation.RequestMethod.GET})
+    @RequestMapping(value = {"/list"}, method = {RequestMethod.GET})
     public String list(@RequestParam(value = "size", required = false, defaultValue = "20") int size, @RequestParam(value = "page", required = false, defaultValue = "0") int page, ModelMap map) {
         Page userList = this.userService.findByPage(getQuery(page, size));
         map.put("page", userList);
@@ -29,7 +30,7 @@ public class UserController extends BaseController {
 
     @ResponseBody
 
-    @RequestMapping(value = {"/auth"}, method = {org.springframework.web.bind.annotation.RequestMethod.POST})
+    @RequestMapping(value = {"/auth"}, method = {RequestMethod.POST})
     GeneralResponse auth(User user) {
         GeneralResponse resp = new GeneralResponse(false, "用户名或密码错误!");
 
@@ -45,7 +46,7 @@ public class UserController extends BaseController {
 
     @ResponseBody
 
-    @RequestMapping(value = {"/logout"}, method = {org.springframework.web.bind.annotation.RequestMethod.POST})
+    @RequestMapping(value = {"/logout"}, method = {RequestMethod.POST})
     GeneralResponse logout() {
         removeLoginUser();
         return new GeneralResponse(true, "success");

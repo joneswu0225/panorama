@@ -16,6 +16,7 @@ public class Hotspot {
     private String out = "";
     private String styleName;
     private String sceneCode;
+    private String pHotspotCode;
     private Date insertTime;
 
     public Integer getHotspotId() {
@@ -124,6 +125,14 @@ public class Hotspot {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getpHotspotCode() {
+        return pHotspotCode;
+    }
+
+    public void setpHotspotCode(String pHotspotCode) {
+        this.pHotspotCode = pHotspotCode;
     }
 
     public Date getInsertTime() {

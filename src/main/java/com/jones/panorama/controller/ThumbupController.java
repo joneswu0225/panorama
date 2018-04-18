@@ -6,6 +6,7 @@ import com.jones.panorama.service.ThumbupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,7 +18,7 @@ public class ThumbupController extends BaseController {
     private ThumbupService thumbupService;
 
     @ResponseBody
-    @RequestMapping(value = {"/count"}, method = {org.springframework.web.bind.annotation.RequestMethod.GET})
+    @RequestMapping(value = {"/count"}, method = {RequestMethod.GET})
     public Integer list(@RequestParam(value = "hotspotCode", required = false) String hotspotCode, @RequestParam(value = "sceneCode", required = false) String sceneCode) {
         Thumbup thumbup = new Thumbup();
         thumbup.setSceneCode(sceneCode);
@@ -26,7 +27,7 @@ public class ThumbupController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = {"/add"}, method = {org.springframework.web.bind.annotation.RequestMethod.POST})
+    @RequestMapping(value = {"/add"}, method = {RequestMethod.POST})
     GeneralResponse addThumbup(@RequestParam(value = "hotspotCode", required = false) String hotspotCode, @RequestParam(value = "sceneCode", required = false) String sceneCode, @RequestParam(value = "userId", required = false) Integer userId) {
         Thumbup thumbup = new Thumbup();
         thumbup.setSceneCode(sceneCode);
@@ -37,7 +38,7 @@ public class ThumbupController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = {"/cancel"}, method = {org.springframework.web.bind.annotation.RequestMethod.POST})
+    @RequestMapping(value = {"/cancel"}, method = {RequestMethod.POST})
     GeneralResponse cancelThumbup(@RequestParam(value = "sceneCode", required = false) String sceneCode, @RequestParam(value = "userId", required = false) Integer userId) {
         Thumbup thumbup = new Thumbup();
         thumbup.setSceneCode(sceneCode);

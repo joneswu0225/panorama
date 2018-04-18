@@ -7,15 +7,15 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public abstract interface SceneMapper {
-    public abstract List<Scene> findList(Query paramQuery);
+public interface SceneMapper {
+    List<Scene> findList(Query paramQuery);
 
-    public abstract List<Scene> findAll();
+    List<Scene> findAll();
 
-    public abstract Integer findCount(Query paramQuery);
+    Integer findCount(Query paramQuery);
 
-    public abstract List<Scene> findByTitle(String paramString);
+    List<Scene> findByTitle(String paramString);
 
-    public abstract void update(Scene paramScene);
+    void update(Scene paramScene);
 }
 

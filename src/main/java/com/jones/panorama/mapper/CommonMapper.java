@@ -1,5 +1,5 @@
 package com.jones.panorama.mapper;
 
-public abstract interface CommonMapper {
+public interface CommonMapper {
 }
 

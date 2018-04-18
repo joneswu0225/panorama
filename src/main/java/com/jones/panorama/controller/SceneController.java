@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,7 +18,7 @@ public class SceneController extends BaseController {
     @Autowired
     private SceneService sceneService;
 
-    @RequestMapping(value = {"/list"}, method = {org.springframework.web.bind.annotation.RequestMethod.GET})
+    @RequestMapping(value = {"/list"}, method = {RequestMethod.GET})
     public String list(@RequestParam(value = "title", required = false) String title, @RequestParam(value = "size", required = false, defaultValue = "20") int size, @RequestParam(value = "page", required = false, defaultValue = "0") int page, ModelMap map) {
         Scene scene = new Scene();
         scene.setTitle(title);
@@ -28,7 +29,7 @@ public class SceneController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = {"/save"}, method = {org.springframework.web.bind.annotation.RequestMethod.POST})
+    @RequestMapping(value = {"/save"}, method = {RequestMethod.POST})
     GeneralResponse saveScene(Scene scene) {
         GeneralResponse resp = this.sceneService.saveScene(scene);
         return resp;

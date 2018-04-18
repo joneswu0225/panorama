@@ -4,7 +4,6 @@
     "needCheckBox":"false",
     "primarykey":"hsScId",
     "params": [
-        {"name": "编号", "attrName": "code"},
         {"name": "场景","attrName":"sceneCode","type": "map","content":"sceneMap"},
         {"name": "场景编号","attrName":"sceneCode"},
         {"name": "热点","attrName":"hotspotCode","type": "map","content":"hotspotMap"},

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public abstract interface CatalogMapper {
-    public abstract List<Catalog> findAll();
+public interface CatalogMapper {
+    List<Catalog> findAll();
 }
 

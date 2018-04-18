@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jones.panorama.mapper.ScScMapper" >
+    <resultMap id="HsScMap" type="HsSc">
+        <id property="scScId" column="sc_sc_id" />
+        <association property="hotspot" resultMap="HotspotMap"/>
+    </resultMap>
+    <resultMap id="HotspotMap" type="Hotspot">
+        <id property="code" column="code" />
+        <result property="catalogName" column="catalog_name" />
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+        <result property="styleName" column="style_name" />
+        <result property="insertTime" column="insert_time" />
+    </resultMap>
+
+    <insert id="insert" parameterType="ScSc">
+        insert into pano_sc_sc(`hotspot_code`, `p_hotspot_code`, `ath`, `atv`, `role_id`, `insert_time`)
+        values(#{hotspotCode}, #{pHotspotCode}, #{ath}, #{atv}, #{roleId}, now())
+    </insert>
+    <insert id="update" parameterType="ScSc">
+        update pano_sc_sc
+        set hotspot_code = #{hotspotCode}, p_hotspot_code = #{pHotspotCode}, ath = #{ath}, atv = #{atv}, role_id = #{roleId}
+        where sc_sc_id=#{scScId}
+    </insert>
+
+    <select id="findList" resultType="ScSc" parameterType="Query">
+        <include refid="com.jones.panorama.mapper.CommonMapper.startPage" />
+        select * from pano_sc_sc
+        where 1=1
+        <if test="query != null and query.pHotspotCode != null and query.pHotspotCode !=''">
+            and p_hotspot_code = #{query.pHotspotCode}
+        </if>
+        <if test="query != null and query.hotspotCode != null and query.hotspotCode !=''">
+            and hotspot_code = #{query.hotspotCode}
+        </if>
+        order by sc_sc_id desc
+        <include refid="com.jones.panorama.mapper.CommonMapper.endPage" />
+    </select>
+
+    <select id="findInnerHotspotList" resultType="Hotspot" parameterType="Query">
+        <include refid="com.jones.panorama.mapper.CommonMapper.startPage" />
+        select
+            hs.p_hotspot_code p_hotspot_code,
+            hs.ath ath,
+            hs.atv atv,
+            h.*
+        from pano_sc_sc hs, pano_hotspot h
+        where hs.hotspot_code = h.code
+        <if test="query != null and query.pHotspotCode != null and query.pHotspotCode !=''">
+            and p_hotspot_code = #{query.pHotspotCode}
+        </if>
+        order by sc_sc_id desc
+        <include refid="com.jones.panorama.mapper.CommonMapper.endPage" />
+    </select>
+
+    <select id="findCount" resultType="java.lang.Integer" parameterType="Query">
+        select count(*) from pano_sc_sc
+        where 1=1
+        <if test="query != null and query.pHotspotCode != null and query.pHotspotCode !=''">
+            and p_hotspot_code = #{query.pHotspotCode}
+        </if>
+        <if test="query != null and query.hotspotCode != null and query.hotspotCode !=''">
+            and hotspot_code = #{query.hotspotCode}
+        </if>
+    </select>
+
+    <select id="findOne" resultType="HsSc">
+        select * from pano_sc_sc where hs_sc_id=#{scScId}
+    </select>
+
+    <delete id="delete">
+        delete from pano_sc_sc where hs_sc_id=#{scScId}
+    </delete>
+</mapper>

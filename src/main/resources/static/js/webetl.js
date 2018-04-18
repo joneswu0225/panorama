@@ -27,7 +27,7 @@ function getValueFromStorage(type, key, field){
 }
 
 function initStorage(){
-    setStorage("crawlRule");
+    setStorage("sty");
     setStorage("dataStoreType");
     setStorage("webSiteOps");
 }

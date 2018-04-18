@@ -68,6 +68,7 @@ public class HsSc {
         this.roleId = roleId;
     }
 
+
     public Date getInsertTime() {
         return this.insertTime;
     }

@@ -8,19 +8,19 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public abstract interface HsScMapper {
-    public abstract List<HsSc> findList(Query paramQuery);
+public interface HsScMapper {
+    List<HsSc> findList(Query paramQuery);
 
-    public abstract List<Hotspot> findHotspotList(Query paramQuery);
+    List<Hotspot> findHotspotList(Query paramQuery);
 
-    public abstract Integer findCount(Query paramQuery);
+    Integer findCount(Query paramQuery);
 
-    public abstract HsSc findOne(Integer paramInteger);
+    HsSc findOne(Integer paramInteger);
 
-    public abstract void insert(HsSc paramHsSc);
+    void insert(HsSc paramHsSc);
 
-    public abstract void update(HsSc paramHsSc);
+    void update(HsSc paramHsSc);
 
-    public abstract void delete(Integer paramInteger);
+    void delete(Integer paramInteger);
 }
 

@@ -7,21 +7,21 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public abstract interface HotspotMapper {
-    public abstract List<Hotspot> findList(Query paramQuery);
+public interface HotspotMapper {
+    List<Hotspot> findList(Query paramQuery);
 
-    public abstract List<Hotspot> findAll();
+    List<Hotspot> findAll();
 
-    public abstract Hotspot findOne(Integer paramInteger);
+    Hotspot findOne(Integer paramInteger);
 
-    public abstract Integer findCount(Query paramQuery);
+    Integer findCount(Query paramQuery);
 
-    public abstract List<Hotspot> findByCode(String paramString);
+    List<Hotspot> findByCode(String paramString);
 
-    public abstract void insert(Hotspot paramHotspot);
+    void insert(Hotspot paramHotspot);
 
-    public abstract void update(Hotspot paramHotspot);
+    void update(Hotspot paramHotspot);
 
-    public abstract void delete(Integer paramInteger);
+    void delete(Integer paramInteger);
 }
 

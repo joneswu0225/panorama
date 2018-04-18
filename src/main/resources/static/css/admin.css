@@ -71,10 +71,9 @@ ul {
 }
 
 .admin-content {
-  width: 100%;
+  /*width: 100%;*/
   min-height:450px;
-  /*width: auto;*/
-  /*overflow: hidden;*/
+  overflow: hidden;
   height: 100%;
   background: #fff;
   /*padding:0px 22px;*/

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -26,7 +27,7 @@ public class UtilityController extends BaseController {
     @Autowired
     private HotspotRepository hotspotRepository;
 
-    @RequestMapping(value = {"/selector"}, method = {org.springframework.web.bind.annotation.RequestMethod.GET})
+    @RequestMapping(value = {"/selector"}, method = {RequestMethod.GET})
     public String list(@RequestParam(value = "type", required = false, defaultValue = "tag") String type, ModelMap map) {
         Iterable list = null;
         switch (type) {

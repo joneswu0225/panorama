@@ -11,6 +11,18 @@ function addHotspot(hotspot, callback){
     })
 }
 /**
+ * 新增问题
+ * @param question：question 的具体内容
+ * @param callback: 回调函数
+ */
+function addQuestion(question, callback){
+    doPost("/pano/addQuestion", question, function(data){
+        if(callback){
+            callback.call(this, data);
+        }
+    })
+}
+/**
  * 热点评论列表
  * @param sceneCode： 场景编号
  * @param page： 页码
@@ -23,6 +35,21 @@ function getHotspotList(sceneCode, callback){
 
 function getAllHotspots(callback){
     doGet("/pano/hotspots", {}, function(data){
+        if(callback){
+            callback.call(this, data);
+        }
+    })
+}
+function getAllInnerHotspots(callback){
+    doGet("/pano/innerHotspots", {}, function(data){
+        if(callback){
+            callback.call(this, data);
+        }
+    })
+}
+
+function getAllQuestions(callback){
+    doGet("/pano/questions", {}, function(data){
         if(callback){
             callback.call(this, data);
         }

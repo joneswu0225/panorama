@@ -10,12 +10,12 @@
         set hotspot_code = #{hotspotCode}, content = #{content}, img_url = #{imgUrl}
         where question_id=#{questionId}
     </update>
-    <select id="findList" parameterType="Question">
+    <select id="findList" parameterType="Query" resultType="Question">
         <include refid="com.jones.panorama.mapper.CommonMapper.startPage" />
         select * from hs_question
         <include refid="com.jones.panorama.mapper.CommonMapper.endPage" />
     </select>
-    <select id="findAll" parameterType="Question">
+    <select id="findAll" resultType="Question">
         select * from hs_question
     </select>
     <select id="findCount" resultType="java.lang.Integer" parameterType="Query">
