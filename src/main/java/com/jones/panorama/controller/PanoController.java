@@ -3,7 +3,7 @@ package com.jones.panorama.controller;
 import com.jones.panorama.model.*;
 import com.jones.panorama.service.HsScService;
 import com.jones.panorama.service.QuestionService;
-import com.jones.panorama.service.ScScService;
+import com.jones.panorama.service.HsHsService;
 import com.jones.panorama.service.SceneService;
 import com.jones.panorama.util.Page;
 
@@ -24,7 +24,7 @@ public class PanoController extends BaseController {
     @Autowired
     private HsScService hsScService;
     @Autowired
-    private ScScService scScService;
+    private HsHsService hsHsService;
 
     @Autowired
     private SceneService sceneService;
@@ -59,7 +59,7 @@ public class PanoController extends BaseController {
     @ResponseBody
     @RequestMapping(value = {"/innerHotspots"}, method = {RequestMethod.GET})
     public List<Hotspot> allinnerHotspots() {
-        return this.scScService.findInnerHotspotList(new Query());
+        return this.hsHsService.findInnerHotspotList(new Query());
     }
 
     @ResponseBody
@@ -80,7 +80,7 @@ public class PanoController extends BaseController {
         if(StringUtils.isEmpty(hotspot.getpHotspotCode())){
             resp = hsScService.addHotspot(hotspot);
         } else {
-            resp = scScService.addInnerHotspot(hotspot);
+            resp = hsHsService.addInnerHotspot(hotspot);
         }
         return resp;
     }

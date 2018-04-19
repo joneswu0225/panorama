@@ -74,7 +74,7 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<configuration>
 					<excludes>
-						<exclude>mybatis/**</exclude>
+						<!--<exclude>mybatis/**</exclude>-->
 						<exclude>static/**</exclude>
 						<!--<exclude>templates/**</exclude>-->
 						<!--<exclude>logback.xml</exclude>-->

@@ -2,7 +2,7 @@ package com.jones.panorama.model;
 
 import java.util.Date;
 
-public class ScSc {
+public class HsHs {
     private Integer hsScId;
     private String hotspotCode;
     private Hotspot hotspot;
