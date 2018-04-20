@@ -17,7 +17,7 @@ public class HsHsRepository {
     @Autowired
     private HsHsMapper hsHsMapper;
 
-    public Page<HsSc> findByPage(Query query) {
+    public Page<HsHs> findByPage(Query query) {
         Integer count = findCount(query);
         return new Page(query, count, findList(query));
     }
@@ -35,6 +35,10 @@ public class HsHsRepository {
         return this.hsHsMapper.findInnerHotspotList(query);
     }
 
+    public List<Hotspot> findAll() {
+        return this.hsHsMapper.findInnerHotspotList(new Query());
+    }
+
     public Integer findCount(Query query) {
         return this.hsHsMapper.findCount(query);
     }
@@ -44,7 +48,7 @@ public class HsHsRepository {
     }
 
     public void save(HsHs hsHs) {
-        if (hsHs.getHsScId() == null)
+        if (hsHs.getHsHsId() == null)
             this.hsHsMapper.insert(hsHs);
         else
             this.hsHsMapper.update(hsHs);

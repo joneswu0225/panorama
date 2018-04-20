@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping({"/pano/scsc"})
+@RequestMapping({"/pano/hshs"})
 public class HsHsController extends BaseController {
 
     @Autowired
@@ -33,32 +33,32 @@ public class HsHsController extends BaseController {
         HsHs hsHs = new HsHs();
         hsHs.setpHotspotCode(pHotspotCode);
         hsHs.setHotspotCode(hotspotCode);
-        Page<HsSc> list = hsHsService.findByPage(getQuery(page, size, hsHs));
+        Page<HsHs> list = hsHsService.findByPage(getQuery(page, size, hsHs));
         Map<String, String> hotspotMap = hotspotService.findAll().stream().collect(Collectors.toMap(Hotspot::getCode, Hotspot::getTitle));
         map.put("page", list);
         map.put("hotspotCode", hotspotCode);
         map.put("pHotspotCode", pHotspotCode);
         map.put("hotspotMap", hotspotMap);
-        return "pano/scsc/list";
+        return "pano/hshs/list";
     }
 
     @ResponseBody
     @RequestMapping(value = {"/save"}, method = {RequestMethod.POST})
-    GeneralResponse saveScsc(HsHs hsHs) {
+    GeneralResponse saveHsHs(HsHs hsHs) {
         return hsHsService.saveScSc(hsHs);
 
     }
 
     @ResponseBody
     @RequestMapping(value = {"/delete"}, method = {RequestMethod.POST})
-    GeneralResponse saveHotspot(@RequestParam("hsScId") Integer hsScId) {
-        hsHsService.delete(hsScId);
+    GeneralResponse deleteHsHs(@RequestParam("hsHsId") Integer hsHsId) {
+        hsHsService.delete(hsHsId);
         return new GeneralResponse(true, "success");
     }
 
     @ResponseBody
-    @RequestMapping(value = {"/{scScId}"}, method = {RequestMethod.GET})
-    HsHs findOne(@PathVariable("scScId") Integer scScId) {
-        return hsHsService.findOne(scScId);
+    @RequestMapping(value = {"/{hsHsId}"}, method = {RequestMethod.GET})
+    HsHs findOne(@PathVariable("hsHsId") Integer hsHsId) {
+        return hsHsService.findOne(hsHsId);
     }
 }

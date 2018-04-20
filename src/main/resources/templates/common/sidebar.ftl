@@ -30,7 +30,7 @@
                     <li><a href="javascript:void(0);" link="/pano/scene/list" class="am-cf"><span class="am-icon-check"></span> 场景 </a></li>
                     <li><a href="javascript:void(0);" link="/pano/hotspot/list" class="am-cf"><span class="am-icon-check"></span> 热点 </a></li>
                     <li><a href="javascript:void(0);" link="/pano/hssc/list" class="am-cf"><span class="am-icon-check"></span> 场景/热点 </a></li>
-                    <li><a href="javascript:void(0);" link="/pano/scsc/list" class="am-cf"><span class="am-icon-check"></span> 热点/热点 </a></li>
+                    <li><a href="javascript:void(0);" link="/pano/hshs/list" class="am-cf"><span class="am-icon-check"></span> 热点/热点 </a></li>
                     <li><a href="javascript:void(0);" link="/question/list" class="am-cf"><span class="am-icon-check"></span> 问题 </a></li>
                 </ul>
             </li>

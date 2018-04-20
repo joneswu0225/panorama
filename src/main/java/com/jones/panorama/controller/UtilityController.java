@@ -1,9 +1,6 @@
 package com.jones.panorama.controller;
 
-import com.jones.panorama.repository.CatalogRepository;
-import com.jones.panorama.repository.HotspotRepository;
-import com.jones.panorama.repository.SceneRepository;
-import com.jones.panorama.repository.StyleRepository;
+import com.jones.panorama.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,6 +24,9 @@ public class UtilityController extends BaseController {
     @Autowired
     private HotspotRepository hotspotRepository;
 
+    @Autowired
+    private HsHsRepository hsHsRepository;
+
     @RequestMapping(value = {"/selector"}, method = {RequestMethod.GET})
     public String list(@RequestParam(value = "type", required = false, defaultValue = "tag") String type, ModelMap map) {
         Iterable list = null;
@@ -42,6 +42,10 @@ public class UtilityController extends BaseController {
                 break;
             case "hotspot":
                 list = this.hotspotRepository.findAll();
+                break;
+            case "innerHotspot":
+                list = this.hsHsRepository.findAll();
+                break;
         }
 
         map.put("type", type);

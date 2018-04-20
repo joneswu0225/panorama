@@ -33,4 +33,13 @@ public class QuestionService {
     public List<Question> findList(Query<Question> query){
         return questionRepository.findAll();
     }
+
+    public Question findOne(Integer questionId){
+        return questionRepository.findOne(questionId);
+    }
+
+    public void delete(Integer questionId) {
+        this.questionRepository.delete(questionId);
+    }
+
 }

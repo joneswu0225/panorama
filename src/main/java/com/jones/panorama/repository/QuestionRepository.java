@@ -30,6 +30,10 @@ public class QuestionRepository {
         return questionMapper.findAll();
     }
 
+    public Question findOne(Integer questionId){
+        return questionMapper.findOne(questionId);
+    }
+
     public Integer findCount(Query<Question> query){
         return questionMapper.findCount(query);
     }
@@ -41,4 +45,9 @@ public class QuestionRepository {
             questionMapper.update(question);
         }
     }
+
+    public void delete(Integer questionId) {
+        this.questionMapper.delete(questionId);
+    }
+
 }

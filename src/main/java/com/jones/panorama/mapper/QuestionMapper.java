@@ -14,4 +14,7 @@ public interface QuestionMapper {
     Integer findCount(Query query);
     void insert(Question question);
     void update(Question question);
+    Question findOne(Integer questionId);
+    void delete(Integer questionId);
+
 }

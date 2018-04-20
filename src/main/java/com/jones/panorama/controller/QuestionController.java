@@ -1,18 +1,20 @@
 package com.jones.panorama.controller;
 
-import com.jones.panorama.model.*;
-import com.jones.panorama.service.CommentService;
+import com.jones.panorama.model.GeneralResponse;
+import com.jones.panorama.model.Hotspot;
+import com.jones.panorama.model.Query;
+import com.jones.panorama.model.Question;
+import com.jones.panorama.service.HsHsService;
 import com.jones.panorama.service.QuestionService;
 import com.jones.panorama.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 /**
@@ -24,12 +26,17 @@ public class QuestionController extends BaseController{
     @Autowired
     private QuestionService questionService;
 
+    @Autowired
+    private HsHsService hsHsService;
+
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(@RequestParam(value = "size", required = false, defaultValue = "10") int size,
                      @RequestParam(value = "page", required = false, defaultValue = "0") int page,
                      ModelMap map){
         Page<Question> list = questionService.findByPage(getQuery(page, size, new Question()));
+        Map<String, String> hotspotMap = hsHsService.findInnerHotspotList(new Query<>()).stream().collect(Collectors.toMap(Hotspot::getCode, Hotspot::getTitle));
         map.put("page", list);
+        map.put("hotspotMap", hotspotMap);
         return "question/list";
     }
 
@@ -40,11 +47,23 @@ public class QuestionController extends BaseController{
     }
 
     @ResponseBody
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    GeneralResponse addComment(Question question) {
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    GeneralResponse saveComment(Question question) {
         questionService.saveQuestion(question);
         return new GeneralResponse(true, "success");
     }
 
+    @ResponseBody
+    @RequestMapping(value = {"/{questionId}"}, method = {RequestMethod.GET})
+    Question findOne(@PathVariable("questionId") Integer questionId) {
+        return questionService.findOne(questionId);
+    }
 
+
+    @ResponseBody
+    @RequestMapping(value = {"/delete"}, method = {RequestMethod.POST})
+    GeneralResponse deleteQuestion(@RequestParam("questionId") Integer questionId) {
+        questionService.delete(questionId);
+        return new GeneralResponse(true, "success");
+    }
 }

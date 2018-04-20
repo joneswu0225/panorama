@@ -3,7 +3,7 @@ package com.jones.panorama.model;
 import java.util.Date;
 
 public class HsHs {
-    private Integer hsScId;
+    private Integer hsHsId;
     private String hotspotCode;
     private Hotspot hotspot;
     private String pHotspotCode;
@@ -12,12 +12,12 @@ public class HsHs {
     private Integer roleId;
     private Date insertTime;
 
-    public Integer getHsScId() {
-        return this.hsScId;
+    public Integer getHsHsId() {
+        return hsHsId;
     }
 
-    public void setHsScId(Integer hsScId) {
-        this.hsScId = hsScId;
+    public void setHsHsId(Integer hsHsId) {
+        this.hsHsId = hsHsId;
     }
 
     public String getHotspotCode() {

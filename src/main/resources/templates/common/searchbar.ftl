@@ -15,6 +15,10 @@
     <#list list as item>
         <option value="${item.code!}">${item.title!}</option>
     </#list>
+<#elseif type="innerHotspot">
+    <#list list as item>
+        <option value="${item.code!}">${item.title!}</option>
+    </#list>
 <#else>
 </#if>
 </select>

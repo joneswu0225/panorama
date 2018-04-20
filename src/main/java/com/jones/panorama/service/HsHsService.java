@@ -19,7 +19,7 @@ public class HsHsService {
     @Autowired
     private HotspotRepository hotspotRepository;
 
-    public Page<HsSc> findByPage(Query<HsSc> query) {
+    public Page<HsHs> findByPage(Query<HsSc> query) {
         return hsHsRepository.findByPage(query);
     }
 

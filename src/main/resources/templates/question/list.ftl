@@ -6,6 +6,7 @@
     "params": [
         {"name": "id", "attrName": "questionId"},
         {"name": "热点","attrName":"hotspotCode","type": "map","content":"hotspotMap"},
+        {"name": "热点编号","attrName":"hotspotCode"},
         {"name": "图片路径","attrName":"imgUrl"},
         {"name": "问题内容","attrName":"content"},
         {"name": "操作"," type": "text", "isExtra": "true",
@@ -16,20 +17,24 @@
 </#assign>
 <#include "../common/header.ftl"/>
 <script>
-    function openModal(tagId){
-        clearReminderHTML('form-jobtag');
+    function openModal(id){
+        if(!id){
+            $("#form-question")[0].reset();
+        }
+        clearReminderHTML('form-question');
         $('#basicSet').modal({
             relatedTarget: this,
             onConfirm: function (e) {
-                var checkResult = checkForm('form-jobtag');
+                var checkResult = checkForm('form-question');
                 if(checkResult){
-                    var request_param = {"tagName": $("#newTagName").val(), "tagId":tagId}
-                    var url = "/question/add";
+                    var request_param = $("#form-question").serializeArray();
+                    console.log(request_param)
+                    var url = "/question/save";
                     doSyncPost(url, request_param, function(data){
                         if(data['suc']){
                             windowLocate(location.href)
                         } else {
-                            showReminder('form-jobtag', data["msg"])
+                            showReminder('form-question', data["msg"])
                         }
                     })
                 }
@@ -38,6 +43,9 @@
         });
     }
     $(function(){
+        initSearchBarSelector("innerHotspot", "#selector-innerHotspot", "${sceneCode!}", 1, {multiple:0, searchBox:1},function(data){
+            $("#selector-innerHotspot").find("select").attr("name", "hotspotCode")
+        })
         clearLocalStorage("tag")
         $('#jobtag-add').on("click",function(){
             resetForm("form-jobtag");
@@ -45,7 +53,7 @@
         })
         $("table .delete").on("click",function(){
             var id = $(this).parents("tr").attr("dataid");
-            doSyncPost("/jobtag/delete", {"tagId":id}, function(data){
+            doSyncPost("/question/delete", {"questionId":id}, function(data){
                 if(data['suc']){
                     windowLocate(location.href)
                 } else {
@@ -55,7 +63,14 @@
         });
         $("table .edit").on("click",function(){
             var id = $(this).parents("tr").attr("dataid");
-            openModal(id);
+            doGet("/question/" + id,{}, function(data){
+                $("#selector-innerHotspot select").val(data.hotspotCode)
+                updateSelected($("#selector-innerHotspot select"))
+                $("#form-question [name='imgUrl']").val(data.imgUrl);
+                $("#form-question [name='questionId']").val(data.questionId);
+                $("#form-question [name='content']").val(data.content);
+                openModal(id);
+            })
         });
     })
 </script>
@@ -72,13 +87,24 @@
 <div class="am-modal am-modal-prompt" tabindex="-1" id="basicSet">
     <div class="am-modal-dialog">
         <div class="am-modal-hd">问题信息</div>
-        <form id="form-jobtag">
+        <form id="form-question">
             <span class="reminder"></span>
             <div class="am-modal-bd">
+                <input name="questionId" type="hidden">
                 <div class="am-g am-margin-top">
-                    <div class="am-u-sm-6 am-u-md-4 am-text-right not-null">标签名称</div>
+                    <div class="am-u-sm-6 am-u-md-4 am-text-right not-null">热点</div>
+                    <div class="am-u-sm-6 am-u-md-7 am-text-left am-u-end" id="selector-innerHotspot"></div>
+                </div>
+                <div class="am-g am-margin-top">
+                    <div class="am-u-sm-6 am-u-md-4 am-text-right not-null">图片路径</div>
                     <div class="am-u-sm-6 am-u-md-7 am-text-left am-u-end">
-                        <input id="newTagName" class="input-middle">
+                        <input name="imgUrl" class="input-middle">
+                    </div>
+                </div>
+                <div class="am-g am-margin-top">
+                    <div class="am-u-sm-6 am-u-md-4 am-text-right not-null">问题内容</div>
+                    <div class="am-u-sm-6 am-u-md-7 am-text-left am-u-end">
+                        <textarea name="content" class="input-middle"></textarea>
                     </div>
                 </div>
             </div>

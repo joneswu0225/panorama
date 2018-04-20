@@ -2,7 +2,7 @@
 <#assign config_json>
 {
     "needCheckBox":"false",
-    "primarykey":"hsScId",
+    "primarykey":"hsHsId",
     "params": [
         {"name": "父热点","attrName":"pHotspotCode","type": "map","content":"hotspotMap"},
         {"name": "父热点编号","attrName":"pHotspotCode"},
@@ -20,22 +20,22 @@
 <script>
     function openModal(id){
         if(!id){
-            $("#form-hssc")[0].reset();
+            $("#form-hshs")[0].reset();
         }
-        clearReminderHTML('form-scsc');
+        clearReminderHTML('form-hshs');
         $('#basicSet').modal({
             relatedTarget: this,
             onConfirm: function (e) {
-                var checkResult = checkForm('form-scsc');
+                var checkResult = checkForm('form-hshs');
                 if(checkResult){
-                    var request_param = $("#form-hssc").serializeArray();
+                    var request_param = $("#form-hshs").serializeArray();
                     console.log(request_param)
-                    var url = "/pano/scsc/save";
+                    var url = "/pano/hshs/save";
                     doSyncPost(url, request_param, function(data){
                         if(data['suc']){
                             windowLocate(location.href)
                         } else {
-                            showReminder('form-hssc', data["msg"])
+                            showReminder('form-hshs', data["msg"])
                         }
                     })
                 }
@@ -61,7 +61,7 @@
         })
         $("table .delete").on("click",function(){
             var id = $(this).parents("tr").attr("dataid");
-            doPost("/pano/scsc/delete", {"scScId": id}, function(data){
+            doPost("/pano/hshs/delete", {"hsHsId": id}, function(data){
                 if(data['suc']){
                     windowLocate(location.href)
                 } else {
@@ -71,14 +71,14 @@
         })
         $("table .edit").on("click",function(){
             var id = $(this).parents("tr").attr("dataid");
-            doGet("/pano/hssc/" + id,{}, function(data){
-                $("#selector-scene select").val(data.pHotspotCode)
+            doGet("/pano/hshs/" + id,{}, function(data){
+                $("#selector-photspot select").val(data.pHotspotCode)
                 updateSelected($("#selector-photspot select"))
                 $("#selector-hotspot select").val(data.hotspotCode)
                 updateSelected($("#selector-hotspot select"))
-                $("#form-hssc [name='ath']").val(data.ath);
-                $("#form-hssc [name='scScId']").val(data.scScId);
-                $("#form-hssc [name='atv']").val(data.atv);
+                $("#form-hshs [name='ath']").val(data.ath);
+                $("#form-hshs [name='scScId']").val(data.scScId);
+                $("#form-hshs [name='atv']").val(data.atv);
                 openModal(id);
             })
         });
@@ -107,7 +107,7 @@
 <div class="am-modal am-modal-prompt" tabindex="-1" id="basicSet">
     <div class="am-modal-dialog">
         <div class="am-modal-hd">热点间关联信息</div>
-        <form id="form-scsc">
+        <form id="form-hshs">
             <span class="reminder"></span>
             <div class="am-modal-bd">
                 <input name="scScId" type="hidden">
