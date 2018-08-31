@@ -50,8 +50,9 @@
         $("table .edit").on("click",function(){
             var id = $(this).parents("tr").attr("dataid");
             var title = $.trim($(this).parents("tr").find(".title").html());
-            var detail = $.trim($(this).parents("tr").find(".detail").html());
+            var detail = $.trim($(this).parents("tr").find(".detail").text());
             $("#sceneTitle").val(title);
+            $("#sceneId").val(id);
             $("#sceneDetail").val(detail);
             openModal(id);
         });
@@ -78,6 +79,7 @@
     <div class="am-modal-dialog">
         <div class="am-modal-hd">场景信息</div>
         <form id="form-scene">
+            <input id="sceneId" name="sceneId" type="hidden">
             <span class="reminder"></span>
             <div class="am-modal-bd">
                 <div class="am-g am-margin-top">

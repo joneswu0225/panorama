@@ -17,26 +17,26 @@ public class SceneService {
     private SceneRepository sceneRepository;
 
     public Page<Scene> findByPage(Query<Scene> query) {
-        return this.sceneRepository.findByPage(query);
+        return sceneRepository.findByPage(query);
     }
 
     public List<Scene> findList(Query<Scene> query) {
-        return this.sceneRepository.findList(query);
+        return sceneRepository.findList(query);
     }
 
     public GeneralResponse saveScene(Scene scene) {
         GeneralResponse resp = new GeneralResponse(false, "添加失败，请重试！");
-        if (this.sceneRepository.existsTitle(scene.getTitle())) {
+        if (scene.getSceneId() == null && sceneRepository.existsTitle(scene.getTitle())) {
             resp.setMsg("title 已存在！");
         } else {
             resp = new GeneralResponse(true, "");
-            this.sceneRepository.save(scene);
+            sceneRepository.save(scene);
         }
         return resp;
     }
 
     public List<Scene> findAll() {
-        return this.sceneRepository.findAll();
+        return sceneRepository.findAll();
     }
 }
 

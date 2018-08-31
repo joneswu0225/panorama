@@ -76,6 +76,7 @@
                 updateSelected($("#selector-photspot select"))
                 $("#selector-hotspot select").val(data.hotspotCode)
                 updateSelected($("#selector-hotspot select"))
+                $("#form-hshs [name='hsHsId']").val(data.hsHsId);
                 $("#form-hshs [name='ath']").val(data.ath);
                 $("#form-hshs [name='scScId']").val(data.scScId);
                 $("#form-hshs [name='atv']").val(data.atv);
@@ -108,9 +109,10 @@
     <div class="am-modal-dialog">
         <div class="am-modal-hd">热点间关联信息</div>
         <form id="form-hshs">
+            <input name="hsHsId" type="hidden">
             <span class="reminder"></span>
             <div class="am-modal-bd">
-                <input name="scScId" type="hidden">
+                <input name="hsHsId" type="hidden">
                 <div class="am-g am-margin-top">
                     <div class="am-u-sm-6 am-u-md-4 am-text-right not-null">父热点</div>
                     <div class="am-u-sm-6 am-u-md-7 am-text-left am-u-end" id="selector-photspot">
